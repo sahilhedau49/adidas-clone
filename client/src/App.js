@@ -5,6 +5,8 @@ import Error from "./components/Error";
 import Store from "./components/Store";
 import Cart from "./components/Cart";
 import "./global.css";
+import Footer from "./components/Footer";
+import Newsletter from "./components/Newsletter";
 
 function App() {
   return (
@@ -12,11 +14,26 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/store" element={<Store />} />
+        <Route path="/store/all" element={<Store category="all" />} />
+        <Route path="/store/shoes" element={<Store category="shoes" />} />
+        <Route path="/store/clothing" element={<Store category="clothing" />} />
+        <Route
+          path="/store/accessories"
+          element={<Store category="accessories" />}
+        />
+        <Route
+          path="/store/fanstore"
+          element={<Store category="fans store" />}
+        />
+
         {/* Will be protected route by user login or not */}
         <Route path="/cart/:userid" element={<Cart />} />
         <Route path="*" element={<Error />} />
       </Routes>
+      <div>
+        <Newsletter />
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 }

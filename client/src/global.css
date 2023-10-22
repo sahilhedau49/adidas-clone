@@ -1,3 +1,37 @@
 * {
   overflow-x: hidden;
 }
+
+.card-hover {
+  transition: 0.3s;
+}
+
+.card-hover:hover {
+  transform: scale(1.1);
+}
+
+.text-gradient {
+  background: -webkit-linear-gradient(45deg, #ee00ff, rgb(0, 217, 255));
+  background-clip: content-box;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn {
+  transition: 0.4s;
+}
+
+.btn-hover1:hover {
+  background: transparent;
+  color: #222;
+}
+
+.btn-hover2:hover {
+  background: #eee;
+  color: #222;
+}
+
+.active {
+  background-color: rgb(80, 81, 82);
+  color: #eee;
+}

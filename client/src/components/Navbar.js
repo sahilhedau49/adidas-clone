@@ -14,7 +14,7 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="flex place-self-center gap-10">
-        <Link className="text-xl font-semibold" to={"/store"}>
+        <Link className="text-xl font-semibold" to={"/store/all"}>
           Store
         </Link>
         <Link className="text-xl font-semibold" to={`/cart/${username}`}>
