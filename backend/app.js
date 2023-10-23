@@ -34,6 +34,13 @@ app.post("/", async (req, res) => {
   });
 });
 
+// Get data
+app.get("/products", async (req, res) => {
+  const query = req.body || null;
+  let data = await Product.find(query);
+  res.json({ data });
+});
+
 app.listen(PORT, async () => {
   await connectDB(process.env.MONGODB_URL);
   console.log("Sever started on port ", PORT);

@@ -9,7 +9,14 @@ const Home = () => {
     <div>
       <div className="p-20 pt-0">
         <Link to={"/store/all"}>
-          <video src={videomain} className="w-full" autoPlay loop muted></video>
+          <video
+            src={videomain}
+            className="w-full"
+            disablePictureInPicture
+            autoPlay
+            loop
+            muted
+          ></video>
         </Link>
       </div>
       <div>
