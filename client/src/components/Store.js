@@ -4,28 +4,26 @@ import axios from "axios";
 import ProductCard from "./ProductCard";
 
 const Store = ({ category }) => {
-  // fetch rerquest from specific category (get from props) and render down using map function
-
   const [data, setData] = useState([]);
 
   const getData = async (flag) => {
     let querry = flag;
     if (querry === "all") {
       const dataRsv = await axios.get(`http://localhost:8000/products/all`);
-      setData(dataRsv.data.data);
-      console.log(dataRsv.data.data);
+      setData(dataRsv.data);
+      // console.log(dataRsv.data);
     } else {
       const dataRsv = await axios.get(
         `http://localhost:8000/products?category=${querry}`
       );
-      setData(dataRsv.data.data);
+      setData(dataRsv.data);
     }
-    console.log(data);
+    // console.log(data);
   };
 
   useEffect(() => {
     getData(category);
-  });
+  }, [category]);
 
   return (
     <div className="bg-gray-100 pb-20">

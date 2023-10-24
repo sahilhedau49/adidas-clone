@@ -38,13 +38,19 @@ app.post("/", async (req, res) => {
 app.get("/products", async (req, res) => {
   const cat = req.query.category;
   let data = await Product.find({ category: cat });
-  res.json({ data });
+  res.json(data);
 });
 
 // Get all data
 app.get("/products/all", async (req, res) => {
   let data = await Product.find();
-  res.json({ data });
+  res.json(data);
+});
+
+// Get product by id
+app.get("/product/:id", async (req, res) => {
+  let data = await Product.findById(req.params.id);
+  res.json(data);
 });
 
 app.listen(PORT, async () => {
