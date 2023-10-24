@@ -7,6 +7,7 @@ import Cart from "./components/Cart";
 import "./global.css";
 import Footer from "./components/Footer";
 import Newsletter from "./components/Newsletter";
+import Product from "./components/Product";
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
           path="/store/fanstore"
           element={<Store category="fans store" />}
         />
-
+        <Route path="/product/:id" element={<Product />} />
         {/* Will be protected route by user login or not */}
         <Route path="/cart/:userid" element={<Cart />} />
         <Route path="*" element={<Error />} />

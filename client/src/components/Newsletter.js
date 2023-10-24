@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Newsletter = () => {
   return (
-    <div className="mt-20 p-10 bg-slate-900 text-center">
+    <div className="p-10 bg-slate-900 text-center">
       <div className="text-4xl font-semibold overflow-y-hidden text-white mb-4">
         Newsletter
       </div>

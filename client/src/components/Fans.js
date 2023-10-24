@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Fans = () => {
   return (
-    <div className="mt-20">
+    <div className="mt-20 pb-20">
       <div className="text-center">
         <h2 className="text-2xl text-slate-500 mb-3">Fans Store</h2>
         <h2 className="text-6xl overflow-y-hidden font-extrabold text uppercase">

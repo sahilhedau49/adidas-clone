@@ -35,3 +35,7 @@
   background-color: rgb(80, 81, 82);
   color: #eee;
 }
+
+.card-bg {
+  border: 1px solid #fff;
+}

@@ -34,11 +34,16 @@ app.post("/", async (req, res) => {
   });
 });
 
-// Get data
+// Get data with querry
 app.get("/products", async (req, res) => {
   const cat = req.query.category;
   let data = await Product.find({ category: cat });
-  // console.log(data);
+  res.json({ data });
+});
+
+// Get all data
+app.get("/products/all", async (req, res) => {
+  let data = await Product.find();
   res.json({ data });
 });
 
