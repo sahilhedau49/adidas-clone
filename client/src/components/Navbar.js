@@ -7,7 +7,7 @@ const Navbar = () => {
   const username = "sahilhedau49";
 
   return (
-    <div className="flex justify-between w-screen py-6 px-24">
+    <div className="flex border-b-2 border-slate-950 justify-between w-screen py-6 px-24">
       <div>
         <Link to={"/"}>
           <img className="w-20" src={logo} alt="Adidas Logo" />
