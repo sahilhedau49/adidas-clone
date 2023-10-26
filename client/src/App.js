@@ -8,34 +8,40 @@ import "./global.css";
 import Footer from "./components/Footer";
 import Newsletter from "./components/Newsletter";
 import Product from "./components/Product";
+import { AuthContextProvider } from "./context/auth";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/store/all" element={<Store category="all" />} />
-        <Route path="/store/shoes" element={<Store category="shoes" />} />
-        <Route path="/store/clothing" element={<Store category="clothing" />} />
-        <Route
-          path="/store/accessories"
-          element={<Store category="accessories" />}
-        />
-        <Route
-          path="/store/fanstore"
-          element={<Store category="fans store" />}
-        />
-        <Route path="/product/:id" element={<Product />} />
-        {/* Will be protected route by user login or not */}
-        <Route path="/cart/:userid" element={<Cart />} />
-        <Route path="*" element={<Error />} />
-      </Routes>
-      <div>
-        <Newsletter />
-        <Footer />
-      </div>
-    </BrowserRouter>
+    <AuthContextProvider>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/store/all" element={<Store category="all" />} />
+          <Route path="/store/shoes" element={<Store category="shoes" />} />
+          <Route
+            path="/store/clothing"
+            element={<Store category="clothing" />}
+          />
+          <Route
+            path="/store/accessories"
+            element={<Store category="accessories" />}
+          />
+          <Route
+            path="/store/fanstore"
+            element={<Store category="fans store" />}
+          />
+          <Route path="/product/:id" element={<Product />} />
+          {/* Will be protected route by user login or not */}
+          <Route path="/cart/:userid" element={<Cart />} />
+          <Route path="*" element={<Error />} />
+        </Routes>
+        <div>
+          <Newsletter />
+          <Footer />
+        </div>
+      </BrowserRouter>
+    </AuthContextProvider>
   );
 }
 
