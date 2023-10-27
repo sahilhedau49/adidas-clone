@@ -5,8 +5,8 @@ import { UserAuth } from "../context/auth";
 
 const Navbar = () => {
   const { user, SignOut } = UserAuth();
-  const username = user?.email;
-  const name = user.displayName;
+  const username = user?.email.split("@")[0];
+  // const username = "sahil";
 
   const handleSignOut = async () => {
     try {
@@ -23,25 +23,42 @@ const Navbar = () => {
           <img className="w-20" src={logo} alt="Adidas Logo" />
         </Link>
       </div>
-      <div className="flex place-self-center gap-10">
-        <Link className="text-xl font-semibold" to={"/store/all"}>
+      <div className="flex place-items-center gap-10">
+        <Link
+          className="text-xl duration-300 font-semibold text-zinc-500 hover:text-black"
+          to={"/store/all"}
+        >
           Store
         </Link>
-        <Link className="text-xl font-semibold" to={`/cart/${username}`}>
+        <Link
+          className="text-xl font-semibold duration-300 text-zinc-500 hover:text-black"
+          to={`/cart/${username}`}
+        >
           Cart
         </Link>
         {!user && (
-          <Link className="text-xl font-semibold" to={"/login"}>
+          <Link
+            className="text-xl font-semibold duration-300 text-zinc-500 hover:text-black"
+            to={"/login"}
+          >
             Log In
           </Link>
         )}
         {user && (
           <>
-            <button className="text-xl font-semibold" onClick={handleSignOut}>
+            <button
+              className="text-xl font-semibold duration-300 text-zinc-500 hover:text-black"
+              onClick={handleSignOut}
+            >
               Log Out
             </button>
 
-            <div>{name}</div>
+            <div className="flex gap-2 place-items-center">
+              <img src={user.photoURL} className="w-10 rounded-full" />
+              <div className="text-xl font-semibold duration-300 text-zinc-500 hover:text-black">
+                {user.displayName}
+              </div>
+            </div>
           </>
         )}
       </div>

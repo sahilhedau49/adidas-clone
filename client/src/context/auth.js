@@ -8,9 +8,13 @@ export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState({});
 
   const SignIn = () => {
-    signInWithPopup(auth, provider).then((result) => {
-      console.log(result.user);
-    });
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const SignOut = () => {
