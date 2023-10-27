@@ -31,7 +31,7 @@ const Store = ({ category }) => {
         <Substores category={category} />
       </div>
       <div className="w-[80%] mx-auto">
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-4 gap-1">
           {data.map((product) => {
             return (
               <ProductCard

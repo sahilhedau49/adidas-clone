@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import Newsletter from "./components/Newsletter";
 import Product from "./components/Product";
 import { AuthContextProvider } from "./context/auth";
+import Login from "./components/Login";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/product/:id" element={<Product />} />
           {/* Will be protected route by user login or not */}
           <Route path="/cart/:userid" element={<Cart />} />
+          <Route path="/login" element={<Login />} />
           <Route path="*" element={<Error />} />
         </Routes>
         <div>
