@@ -27,11 +27,13 @@ const Product = () => {
     <div className="bg-gray-100">
       <div className="w-[60%] mx-auto my-20">
         <div className="flex justify-between mb-10">
-          <h2 className="text-3xl font-bold overflow-y-hidden">{data.name}</h2>
+          <h2 className="text-3xl w-[70%] font-bold overflow-y-hidden">
+            {data.name}
+          </h2>
           <h3 className="uppercase text-lg text-slate-500">{data.category}</h3>
         </div>
         <div>
-          <img className="w-[60%]" src={data.imgUrl} alt="Product" />
+          <img className="w-[30%]" src={data.imgUrl} alt="Product" />
         </div>
         <div className="text-xl text-slate-700 mt-10">
           <p>{data.description}</p>

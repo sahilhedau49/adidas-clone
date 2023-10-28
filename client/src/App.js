@@ -31,11 +31,11 @@ function App() {
           />
           <Route
             path="/store/fanstore"
-            element={<Store category="fans store" />}
+            element={<Store category="fanstore" />}
           />
           <Route path="/product/:id" element={<Product />} />
           {/* Will be protected route by user login or not */}
-          <Route path="/cart/:userid" element={<Cart />} />
+          <Route path="/cart" element={<Cart />} />
           <Route
             path="/login"
             element={
