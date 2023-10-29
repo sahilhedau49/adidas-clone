@@ -39,3 +39,7 @@
 .card-bg {
   border: 1px solid #fff;
 }
+
+.error-img {
+  border-radius: 8%;
+}
