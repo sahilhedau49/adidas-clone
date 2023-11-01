@@ -1,12 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { CartData } from "../context/cart";
 
 const Product = () => {
   const [data, setData] = useState([]);
   const { id } = useParams();
   const [count, setCount] = useState(0);
   const [quantity_error, setQuantity_error] = useState(false);
+  const { addToCart } = CartData();
 
   const getData = async () => {
     const dataRsv = await axios.get(`http://localhost:8000/product/${id}`);
@@ -20,6 +22,8 @@ const Product = () => {
   const handleATC = () => {
     if (count === 0) {
       setQuantity_error(true);
+    } else {
+      addToCart(data, count);
     }
   };
 
