@@ -74,7 +74,6 @@ const Product = () => {
               +
             </div>
           </div>
-          {/* Add post method -- data will be stored in cart of user... */}
           <button
             onClick={handleATC}
             className="btn rounded-lg hover:bg-slate-800 border-2 border-black hover:text-slate-50 py-2 px-6 text-2xl"
