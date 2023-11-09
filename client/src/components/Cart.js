@@ -7,7 +7,7 @@ const Cart = () => {
 
   return (
     <>
-      <div className="w-[70%] flex flex-col my-10 px-8  mx-auto text-center">
+      <div className="w-[70%] bg-gray-200 pb-6 flex flex-col my-10 px-8  mx-auto text-center">
         <div>
           <ul className="grid border-b-[1px] border-black py-6 grid-cols-5">
             <li>Name</li>
@@ -17,15 +17,17 @@ const Cart = () => {
             <li>Delete</li>
           </ul>
         </div>
-        {inCart.map((product) => {
-          return (
-            <>
-              <div className="mt-10">
-                <CartRow data={product} />
-              </div>
-            </>
-          );
-        })}
+        <div className="max-h-[60vh] overflow-y-scroll">
+          {inCart.map((product) => {
+            return (
+              <>
+                <div className="overflow-visible">
+                  <CartRow data={product} />
+                </div>
+              </>
+            );
+          })}
+        </div>
       </div>
     </>
   );

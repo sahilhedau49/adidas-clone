@@ -12,12 +12,11 @@ export const CartContextProvider = ({ children }) => {
     }
   }, []);
 
-  const addToCart = (product, count) => {
-    product["quantity"] = count;
-    setInCart([...inCart, product]);
-    localStorage.setItem("adidasCart", JSON.stringify(inCart));
-
-    // There is small delay in adding latest data into local storage
+  const addToCart = (product) => {
+    product["quantity"] = 1;
+    let updatedCart = [...inCart, product];
+    setInCart(updatedCart);
+    localStorage.setItem("adidasCart", JSON.stringify(updatedCart));
   };
 
   return (

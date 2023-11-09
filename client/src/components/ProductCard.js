@@ -6,9 +6,9 @@ const ProductCard = (props) => {
   return (
     <Link
       to={`/product/${id}`}
-      className="flex justify-between h-[20rem] flex-col p-4 card-bg duration-300 bg-gray-200 hover:bg-gray-300"
+      className="flex justify-between h-full flex-col p-4 card-bg duration-300 bg-gray-200 hover:bg-gray-300"
     >
-      <div className="h-[60%]">
+      <div className="h-[12rem]">
         <img
           className="rounded-md mx-auto max-h-[100%] max-w-[100%]"
           src={imgUrl}
@@ -16,7 +16,7 @@ const ProductCard = (props) => {
         />
       </div>
       <div className="mt-4 h-[30%]">
-        <div className="text-xl font-bold text-slate-700">
+        <div className="text-lg font-bold text-slate-700">
           {`${name.substring(0, 20)} ...`}
         </div>
         <p className="mt-4">
