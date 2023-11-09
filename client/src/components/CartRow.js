@@ -1,12 +1,17 @@
 import React from "react";
 import { AiFillDelete } from "react-icons/ai";
+import { CartData } from "../context/cart";
 
 const CartRow = ({ data }) => {
-  const handleDel = () => {};
+  const { deleteFromCart } = CartData();
+
+  const handleDel = () => {
+    deleteFromCart(data._id);
+  };
 
   return (
     <div className="grid grid-cols-5 border-b-[1px] py-6 border-slate-700">
-      <div className="my-auto text-[0.9rem] px-1">{data.name}</div>
+      <div className="my-auto text-[0.9rem] px-4">{data.name}</div>
       <img
         className="block mx-auto w-16 my-auto rounded-md"
         src={data.imgUrl}

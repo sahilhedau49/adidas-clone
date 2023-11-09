@@ -1,15 +1,16 @@
 import React from "react";
 import { CartData } from "../context/cart";
 import CartRow from "./CartRow";
+import "../global.css";
 
 const Cart = () => {
   const { inCart } = CartData();
 
   return (
     <>
-      <div className="w-[70%] bg-gray-200 pb-6 flex flex-col my-10 px-8  mx-auto text-center">
-        <div>
-          <ul className="grid border-b-[1px] border-black py-6 grid-cols-5">
+      <div className="w-[70%] pb-6 flex flex-col my-10 mx-auto text-center">
+        <div className="bg-gray-400">
+          <ul className="grid border-b-[1px] font-medium border-black py-6 grid-cols-5">
             <li>Name</li>
             <li>Image</li>
             <li>Quantity</li>
@@ -17,12 +18,12 @@ const Cart = () => {
             <li>Delete</li>
           </ul>
         </div>
-        <div className="max-h-[60vh] overflow-y-scroll">
+        <div className="bg-gray-200 max-h-[60vh] overflow-y-scroll">
           {inCart.map((product) => {
             return (
               <>
                 <div className="overflow-visible">
-                  <CartRow data={product} />
+                  <CartRow key={product._id} data={product} />
                 </div>
               </>
             );

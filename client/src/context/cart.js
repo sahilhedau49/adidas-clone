@@ -13,14 +13,27 @@ export const CartContextProvider = ({ children }) => {
   }, []);
 
   const addToCart = (product) => {
-    product["quantity"] = 1;
-    let updatedCart = [...inCart, product];
+    let findProd = inCart.findIndex((obj) => {
+      return obj._id === product._id;
+    });
+    if (findProd === -1) {
+      product["quantity"] = 1;
+      let updatedCart = [...inCart, product];
+      setInCart(updatedCart);
+      localStorage.setItem("adidasCart", JSON.stringify(updatedCart));
+    }
+  };
+
+  const deleteFromCart = (id) => {
+    let updatedCart = inCart.filter((obj) => {
+      return obj._id !== id;
+    });
     setInCart(updatedCart);
-    localStorage.setItem("adidasCart", JSON.stringify(updatedCart));
+    console.log("Deleted");
   };
 
   return (
-    <CartContext.Provider value={{ addToCart, inCart }}>
+    <CartContext.Provider value={{ addToCart, inCart, deleteFromCart }}>
       {children}
     </CartContext.Provider>
   );
