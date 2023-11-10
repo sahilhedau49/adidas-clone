@@ -3,11 +3,15 @@ import { AiFillDelete } from "react-icons/ai";
 import { CartData } from "../context/cart";
 
 const CartRow = ({ data }) => {
-  const { deleteFromCart } = CartData();
+  const { deleteFromCart, decrementQuantity, incrementQuantity, getQuantity } =
+    CartData();
 
   const handleDel = () => {
     deleteFromCart(data._id);
   };
+
+  const shouldDecDisableBtn = getQuantity(data._id) === 1;
+  const shouldIncDisableBtn = getQuantity(data._id) === 10;
 
   return (
     <div className="grid grid-cols-5 border-b-[1px] py-6 border-slate-700">
@@ -17,15 +21,27 @@ const CartRow = ({ data }) => {
         src={data.imgUrl}
       ></img>
       <div className="flex justify-center place-items-center">
-        <div className="rounded-l-md selection:bg-transparent cursor-pointer text-white bg-gray-600 text-center w-8 h-8 text-xl">
+        <button
+          disabled={shouldDecDisableBtn}
+          onClick={() => {
+            decrementQuantity(data._id);
+          }}
+          className="disabled-btn rounded-l-md selection:bg-transparent cursor-pointer text-white bg-gray-600 text-center w-7 h-7 text-lg "
+        >
           -
-        </div>
+        </button>
         <div className="text-center w-8 text-lg">{data.quantity}</div>
-        <div className="rounded-r-md selection:bg-transparent cursor-pointer text-white bg-gray-600 text-center w-8 h-8 text-xl">
+        <button
+          disabled={shouldIncDisableBtn}
+          onClick={() => {
+            incrementQuantity(data._id);
+          }}
+          className="disabled-btn rounded-r-md selection:bg-transparent cursor-pointer text-white bg-gray-600 text-center w-7 h-7 text-lg"
+        >
           +
-        </div>
+        </button>
       </div>
-      <div className="my-auto">{data.price} /-</div>
+      <div className="my-auto">{data.totalPrice} /-</div>
       <div className="my-auto text-2xl text-gray-800">
         <button onClick={handleDel}>
           <AiFillDelete />

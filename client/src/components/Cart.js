@@ -8,7 +8,7 @@ const Cart = () => {
 
   return (
     <>
-      <div className="w-[70%] pb-6 flex flex-col my-10 mx-auto text-center">
+      <div className="w-[70%] pb-6 flex flex-col my-10 mx-10 text-center">
         <div className="bg-gray-400">
           <ul className="grid border-b-[1px] font-medium border-black py-6 grid-cols-5">
             <li>Name</li>

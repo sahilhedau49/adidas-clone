@@ -18,6 +18,8 @@ export const CartContextProvider = ({ children }) => {
     });
     if (findProd === -1) {
       product["quantity"] = 1;
+      let p = product.price;
+      product["totalPrice"] = p;
       let updatedCart = [...inCart, product];
       setInCart(updatedCart);
       localStorage.setItem("adidasCart", JSON.stringify(updatedCart));
@@ -32,8 +34,72 @@ export const CartContextProvider = ({ children }) => {
     console.log("Deleted");
   };
 
+  const incrementQuantity = (id) => {
+    setInCart((prevState) => {
+      let findProd = inCart.findIndex((obj) => {
+        return obj._id === id;
+      });
+
+      const updatedData = [...prevState];
+      let prevQuantity = updatedData[findProd].quantity;
+      let p = updatedData[findProd].price;
+      if (prevQuantity === 10) {
+        return prevState;
+      }
+
+      updatedData[findProd] = {
+        ...updatedData[findProd],
+        quantity: prevQuantity + 1,
+        totalPrice: (prevQuantity + 1) * p,
+      };
+      localStorage.setItem("adidasCart", JSON.stringify(updatedData));
+      return updatedData;
+    });
+  };
+
+  const decrementQuantity = (id) => {
+    setInCart((prevState) => {
+      let findProd = inCart.findIndex((obj) => {
+        return obj._id === id;
+      });
+
+      const updatedData = [...prevState];
+      let prevQuantity = updatedData[findProd].quantity;
+      let p = updatedData[findProd].price;
+
+      if (prevQuantity === 1) {
+        return prevState;
+      }
+
+      updatedData[findProd] = {
+        ...updatedData[findProd],
+        quantity: prevQuantity - 1,
+        totalPrice: (prevQuantity - 1) * p,
+      };
+      localStorage.setItem("adidasCart", JSON.stringify(updatedData));
+
+      return updatedData;
+    });
+  };
+
+  const getQuantity = (id) => {
+    const idx = inCart.findIndex((obj) => {
+      return obj._id === id;
+    });
+    return inCart[idx].quantity;
+  };
+
   return (
-    <CartContext.Provider value={{ addToCart, inCart, deleteFromCart }}>
+    <CartContext.Provider
+      value={{
+        addToCart,
+        inCart,
+        deleteFromCart,
+        incrementQuantity,
+        decrementQuantity,
+        getQuantity,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
