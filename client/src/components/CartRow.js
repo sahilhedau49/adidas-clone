@@ -49,7 +49,7 @@ const CartRow = ({ data }) => {
         })}
       </div>
       <div className="my-auto text-2xl text-gray-800">
-        <button onClick={handleDel}>
+        <button onClick={handleDel} className="duration-200 hover:text-red-600">
           <AiFillDelete />
         </button>
       </div>

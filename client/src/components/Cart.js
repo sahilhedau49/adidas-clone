@@ -21,7 +21,7 @@ const Cart = () => {
               <li>Delete</li>
             </ul>
           </div>
-          <div className="bg-gray-200 max-h-[60vh] overflow-y-scroll">
+          <div className="custom-scrollbar bg-gray-200 max-h-[60vh] overflow-y-scroll">
             {inCart.map((product) => {
               return (
                 <>
