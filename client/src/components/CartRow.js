@@ -1,6 +1,7 @@
 import React from "react";
 import { AiFillDelete } from "react-icons/ai";
 import { CartData } from "../context/cart";
+import "../global.css";
 
 const CartRow = ({ data }) => {
   const { deleteFromCart, decrementQuantity, incrementQuantity, getQuantity } =
@@ -14,10 +15,10 @@ const CartRow = ({ data }) => {
   const shouldIncDisableBtn = getQuantity(data._id) === 10;
 
   return (
-    <div className="grid grid-cols-5 border-b-[1px] py-6 border-slate-700">
+    <div className="grid-cart border-b-[1px] py-6 border-slate-700">
       <div className="my-auto text-[0.9rem] px-4">{data.name}</div>
       <img
-        className="block mx-auto w-16 my-auto rounded-md"
+        className="block mx-auto w-20 my-auto rounded-md"
         src={data.imgUrl}
       ></img>
       <div className="flex justify-center place-items-center">
@@ -41,7 +42,12 @@ const CartRow = ({ data }) => {
           +
         </button>
       </div>
-      <div className="my-auto">{data.totalPrice} /-</div>
+      <div className="my-auto">
+        {data.totalPrice.toLocaleString("en-IN", {
+          style: "currency",
+          currency: "INR",
+        })}
+      </div>
       <div className="my-auto text-2xl text-gray-800">
         <button onClick={handleDel}>
           <AiFillDelete />

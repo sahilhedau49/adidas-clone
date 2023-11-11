@@ -31,6 +31,7 @@ export const CartContextProvider = ({ children }) => {
       return obj._id !== id;
     });
     setInCart(updatedCart);
+    localStorage.setItem("adidasCart", JSON.stringify(updatedCart));
     console.log("Deleted");
   };
 
@@ -89,6 +90,16 @@ export const CartContextProvider = ({ children }) => {
     return inCart[idx].quantity;
   };
 
+  const getTotalCartAmount = () => {
+    let amount = 0;
+    inCart.forEach((obj) => {
+      amount = amount + obj.totalPrice;
+    });
+    console.log(amount);
+
+    return amount;
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -98,6 +109,7 @@ export const CartContextProvider = ({ children }) => {
         incrementQuantity,
         decrementQuantity,
         getQuantity,
+        getTotalCartAmount,
       }}
     >
       {children}

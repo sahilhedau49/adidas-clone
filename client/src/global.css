@@ -48,3 +48,14 @@
   background: #c2c2c2;
   color: #2f2f2f;
 }
+
+.grid-cart {
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr 2fr 1fr;
+}
+
+.summary-box {
+  background: rgba(66, 66, 66, 0.1);
+  border: 1px solid #fff;
+  box-shadow: 0 0 20px #bbb;
+}
