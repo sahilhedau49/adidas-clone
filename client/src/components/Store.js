@@ -5,11 +5,15 @@ import ProductCard from "./ProductCard";
 
 const Store = ({ category }) => {
   const [data, setData] = useState([]);
+  const [search, setSearch] = useState("");
 
   const handleSearchChange = (e) => {
-    var search = e.target.value;
-    console.log(search);
+    setSearch(e.target.value);
   };
+
+  const filteredData = data.filter((prod) => {
+    return prod.name.toLowerCase().includes(search.toLowerCase());
+  });
 
   useEffect(() => {
     const getData = async (flag) => {
@@ -36,9 +40,9 @@ const Store = ({ category }) => {
         <p className="text-xl pb-2">Search: </p>
         <input
           onChange={handleSearchChange}
-          className="px-4 py-2 outline-none rounded-xl"
+          className="px-4 py-2 border-2 border-gray-300 focus:border-2 focus:border-gray-950 outline-none duration-200 rounded-xl"
           type="text"
-          name="search"
+          placeholder="Search"
         />
       </div>
       <div className="my-20">
@@ -46,7 +50,7 @@ const Store = ({ category }) => {
       </div>
       <div className="w-[80%] mx-auto">
         <div className="grid grid-cols-4 gap-1">
-          {data.map((product) => {
+          {filteredData.map((product) => {
             return (
               <ProductCard
                 key={product._id}
