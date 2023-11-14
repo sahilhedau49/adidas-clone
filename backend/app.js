@@ -3,6 +3,7 @@ const express = require("express");
 const connectDB = require("./db/connect");
 const Product = require("./model/product");
 const cors = require("cors");
+const stripe = require("stripe")(process.env.STRIPE_KEY);
 
 const app = express();
 
@@ -51,6 +52,32 @@ app.get("/products/all", async (req, res) => {
 app.get("/product/:id", async (req, res) => {
   let data = await Product.findById(req.params.id);
   res.json(data);
+});
+
+// Checkout api
+app.post("/create-checkout-session", async (req, res) => {
+  const { products } = req.body;
+
+  const lineItems = products.map((prod) => ({
+    price_data: {
+      currency: "inr",
+      product_data: {
+        name: prod.name,
+      },
+      unit_amount: prod.price * 100,
+    },
+    quantity: prod.quantity,
+  }));
+
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ["card"],
+    line_items: lineItems,
+    mode: "payment",
+    success_url: `${process.env.DOMAIN_URL}/success`,
+    cancel_url: `${process.env.DOMAIN_URL}/cancel`,
+  });
+
+  res.json({ id: session.id });
 });
 
 app.listen(PORT, async () => {

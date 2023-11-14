@@ -10,19 +10,19 @@ const Product = () => {
   const { id } = useParams();
   const { addToCart } = CartData();
 
-  const getData = async () => {
-    const dataRsv = await axios.get(`http://localhost:8000/product/${id}`);
-    setData(dataRsv.data);
-  };
-
   useEffect(() => {
+    const getData = async () => {
+      const dataRsv = await axios.get(`http://localhost:8000/product/${id}`);
+      setData(dataRsv.data);
+    };
+
     getData();
   }, [id]);
 
   const handleATC = () => {
     addToCart(data);
     toast.success("Added to cart 🛒", {
-      position: "bottom-center",
+      position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,

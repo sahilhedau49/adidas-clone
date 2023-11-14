@@ -2,11 +2,43 @@ import React from "react";
 import { CartData } from "../context/cart";
 import CartRow from "./CartRow";
 import "../global.css";
+import { loadStripe } from "@stripe/stripe-js/pure";
 
 const Cart = () => {
   const { inCart, getTotalCartAmount } = CartData();
 
   let Subtotal = getTotalCartAmount();
+
+  const makePayment = async () => {
+    const stripe = await loadStripe(
+      "pk_test_51OCLURSBwEURRPsmktzwpWbkEkOr6KJo060qt2mDBnT4pu2N6L1YoFPU4g40UZ5InZc0gGNdPq7vuHFCi2gqdY0x00zFkjSIL7"
+    );
+
+    const body = {
+      products: inCart,
+    };
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    const response = await fetch(
+      "http://localhost:8000/create-checkout-session",
+      {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(body),
+      }
+    );
+
+    const session = await response.json();
+
+    const result = stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+
+    if (result.error) {
+      console.log(result.error);
+    }
+  };
 
   return (
     <>
@@ -24,11 +56,11 @@ const Cart = () => {
           <div className="custom-scrollbar bg-gray-200 max-h-[60vh] overflow-y-scroll">
             {inCart.map((product) => {
               return (
-                <>
+                <div key={product._id}>
                   <div className="overflow-visible">
-                    <CartRow key={product._id} data={product} />
+                    <CartRow data={product} />
                   </div>
-                </>
+                </div>
               );
             })}
           </div>
@@ -62,7 +94,10 @@ const Cart = () => {
               })}
             </p>
           </div>
-          <button className="mt-3 w-full text-white py-2 border-2 bg-gray-700 border-gray-700 rounded-2xl duration-200 hover:text-black hover:bg-transparent">
+          <button
+            onClick={makePayment}
+            className="mt-3 w-full text-white py-2 border-2 bg-gray-700 border-gray-700 rounded-2xl duration-200 hover:text-black hover:bg-transparent"
+          >
             Checkout
           </button>
         </div>

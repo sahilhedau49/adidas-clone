@@ -7,7 +7,7 @@ const Fans = () => {
       <div className="text-center">
         <h2 className="text-2xl text-slate-500 mb-3">Fans Store</h2>
         <h2 className="text-6xl overflow-y-hidden font-extrabold text uppercase">
-          Follow your <span class="text-gradient">team</span>
+          Follow your <span className="text-gradient">team</span>
         </h2>
         <p className="mt-3 text-xl text-slate-500">
           Find your favourite team/club's jursey sponsered by Adidas...

@@ -95,7 +95,7 @@ export const CartContextProvider = ({ children }) => {
     inCart.forEach((obj) => {
       amount = amount + obj.totalPrice;
     });
-    console.log(amount);
+    // console.log(amount);
 
     return amount;
   };
