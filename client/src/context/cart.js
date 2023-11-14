@@ -100,6 +100,11 @@ export const CartContextProvider = ({ children }) => {
     return amount;
   };
 
+  const emptyCart = () => {
+    setInCart([]);
+    localStorage.removeItem("adidasCart");
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -110,6 +115,7 @@ export const CartContextProvider = ({ children }) => {
         decrementQuantity,
         getQuantity,
         getTotalCartAmount,
+        emptyCart,
       }}
     >
       {children}

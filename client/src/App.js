@@ -12,6 +12,8 @@ import { AuthContextProvider } from "./context/auth";
 import Login from "./components/Login";
 import ProtectLogin from "./components/ProtectLogin";
 import { CartContextProvider } from "./context/cart";
+import Success from "./components/Success";
+import Cancel from "./components/Cancel";
 
 function App() {
   return (
@@ -46,6 +48,8 @@ function App() {
                 </ProtectLogin>
               }
             />
+            <Route path="/success" element={<Success />} />
+            <Route path="/cancel" element={<Cancel />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </CartContextProvider>

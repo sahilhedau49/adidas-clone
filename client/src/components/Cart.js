@@ -10,6 +10,10 @@ const Cart = () => {
   let Subtotal = getTotalCartAmount();
 
   const makePayment = async () => {
+    if (inCart.length === 0) {
+      return;
+    }
+
     const stripe = await loadStripe(
       "pk_test_51OCLURSBwEURRPsmktzwpWbkEkOr6KJo060qt2mDBnT4pu2N6L1YoFPU4g40UZ5InZc0gGNdPq7vuHFCi2gqdY0x00zFkjSIL7"
     );
@@ -78,17 +82,12 @@ const Cart = () => {
           </div>
           <div className="flex justify-between pb-3 border-b-2 border-neutral-950">
             <p className="text-xl text-gray-800">Delivery Charges: </p>
-            <p className="text-lg font-semibold">
-              {(Subtotal * 0.01).toLocaleString("en-IN", {
-                style: "currency",
-                currency: "INR",
-              })}
-            </p>
+            <p className="text-lg font-semibold text-green-600"> FREE</p>
           </div>
           <div className="flex justify-between my-3">
             <p className="text-xl text-gray-800">Total: </p>
             <p className="text-xl font-semibold">
-              {(Subtotal * 1.01).toLocaleString("en-IN", {
+              {Subtotal.toLocaleString("en-IN", {
                 style: "currency",
                 currency: "INR",
               })}
