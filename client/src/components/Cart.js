@@ -2,46 +2,16 @@ import React from "react";
 import { CartData } from "../context/cart";
 import CartRow from "./CartRow";
 import "../global.css";
-import { loadStripe } from "@stripe/stripe-js/pure";
+import { useNavigate } from "react-router";
 
 const Cart = () => {
   const { inCart, getTotalCartAmount } = CartData();
+  const navigate = useNavigate();
 
   let Subtotal = getTotalCartAmount();
 
-  const makePayment = async () => {
-    if (inCart.length === 0) {
-      return;
-    }
-
-    const stripe = await loadStripe(
-      "pk_test_51OCLURSBwEURRPsmktzwpWbkEkOr6KJo060qt2mDBnT4pu2N6L1YoFPU4g40UZ5InZc0gGNdPq7vuHFCi2gqdY0x00zFkjSIL7"
-    );
-
-    const body = {
-      products: inCart,
-    };
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    const response = await fetch(
-      "http://localhost:8000/create-checkout-session",
-      {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(body),
-      }
-    );
-
-    const session = await response.json();
-
-    const result = stripe.redirectToCheckout({
-      sessionId: session.id,
-    });
-
-    if (result.error) {
-      console.log(result.error);
-    }
+  const navToCheckout = () => {
+    navigate("/checkout");
   };
 
   return (
@@ -94,7 +64,7 @@ const Cart = () => {
             </p>
           </div>
           <button
-            onClick={makePayment}
+            onClick={navToCheckout}
             className="mt-3 w-full text-white py-2 border-2 bg-gray-700 border-gray-700 rounded-2xl duration-200 hover:text-black hover:bg-transparent"
           >
             Checkout

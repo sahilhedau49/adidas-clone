@@ -14,6 +14,7 @@ import ProtectLogin from "./components/ProtectLogin";
 import { CartContextProvider } from "./context/cart";
 import Success from "./components/Success";
 import Cancel from "./components/Cancel";
+import Checkout from "./components/Checkout";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
                 </ProtectLogin>
               }
             />
+            <Route path="/checkout" element={<Checkout />} />
             <Route path="/success" element={<Success />} />
             <Route path="/cancel" element={<Cancel />} />
             <Route path="*" element={<Error />} />
