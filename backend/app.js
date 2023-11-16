@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const connectDB = require("./db/connect");
 const Product = require("./model/product");
+const Order = require("./model/orders");
 const cors = require("cors");
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 
@@ -56,7 +57,25 @@ app.get("/product/:id", async (req, res) => {
 
 // Checkout api
 app.post("/create-checkout-session", async (req, res) => {
-  const { products } = req.body;
+  const { products, addressData } = req.body;
+
+  const productsData = products.map((prod) => ({
+    productDetails: prod._id,
+    quantity: prod.quantity,
+    totalPrice: prod.totalPrice,
+  }));
+
+  const orderData = {
+    addressData: addressData,
+    productsData: productsData,
+  };
+
+  try {
+    await Order.insertMany([orderData]);
+  } catch (error) {
+    res.json({ error: error });
+    return;
+  }
 
   const lineItems = products.map((prod) => ({
     price_data: {
