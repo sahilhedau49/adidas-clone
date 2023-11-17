@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js/pure";
 import { CartData } from "../context/cart";
+import { UserAuth } from "../context/auth";
 
 const Checkout = () => {
+  const { user } = UserAuth();
   const { inCart } = CartData();
   const [addressData, setAddressData] = useState({
     name: "",
@@ -27,6 +29,12 @@ const Checkout = () => {
       return;
     }
 
+    let userData = {
+      name: user.displayName,
+      email: user.email,
+      photoUrl: user.photoURL,
+    };
+
     const stripe = await loadStripe(
       "pk_test_51OCLURSBwEURRPsmktzwpWbkEkOr6KJo060qt2mDBnT4pu2N6L1YoFPU4g40UZ5InZc0gGNdPq7vuHFCi2gqdY0x00zFkjSIL7"
     );
@@ -34,6 +42,7 @@ const Checkout = () => {
     const body = {
       products: inCart,
       addressData: addressData,
+      userData: userData,
     };
     const headers = {
       "Content-Type": "application/json",
@@ -62,59 +71,68 @@ const Checkout = () => {
     <div>
       <div className="flex flex-col place-items-center">
         <div className="my-6 text-3xl">
-          <p className="overflow-y-hidden">Address Details</p>
+          <p className="overflow-y-hidden font-semibold text-gray-800">
+            Address Details
+          </p>
         </div>
         <div className="w-[30%]">
-          <p className="pl-2 text-xl mb-1">Full Name*</p>
+          <p className="pl-2 text-lg mb-1">Full Name*</p>
           <input
+            placeholder="Full Name"
             onChange={handleAddressDataChange}
             required
             className="w-full outline-none mb-3 px-4 py-1 rounded-xl border-2 hover:border-gray-900 duration-200"
             type="text"
             name="name"
           />
-          <p className="pl-2 text-xl mb-1">Mobile number*</p>
+          <p className="pl-2 text-lg mb-1">Mobile number*</p>
           <input
+            placeholder="Mobile number"
             onChange={handleAddressDataChange}
             required
             className="w-full outline-none mb-3 px-4 py-1 rounded-xl border-2 hover:border-gray-900 duration-200"
             type="phone"
             name="phone"
           />
-          <p className="pl-2 text-xl mb-1">House no.*</p>
+          <p className="pl-2 text-lg mb-1">House no.*</p>
           <input
+            placeholder="House no."
             onChange={handleAddressDataChange}
             required
             className="w-full outline-none mb-3 px-4 py-1 rounded-xl border-2 hover:border-gray-900 duration-200"
             type="pin"
             name="housenumber"
           />
-          <p className="pl-2 text-xl mb-1">Address*</p>
+          <p className="pl-2 text-lg mb-1">Address*</p>
           <input
+            placeholder="Address"
             onChange={handleAddressDataChange}
             required
             className="w-full outline-none mb-3 px-4 py-1 rounded-xl border-2 hover:border-gray-900 duration-200"
             type="address"
             name="address"
           />
-          <p className="pl-2 text-xl mb-1">Pincode*</p>
+          <p className="pl-2 text-lg mb-1">Pincode*</p>
           <input
+            placeholder="Pincode"
             onChange={handleAddressDataChange}
             required
             className="w-full outline-none mb-3 px-4 py-1 rounded-xl border-2 hover:border-gray-900 duration-200"
             type="pincode"
             name="pincode"
           />
-          <p className="pl-2 text-xl mb-1">City*</p>
+          <p className="pl-2 text-lg mb-1">City*</p>
           <input
+            placeholder="City"
             onChange={handleAddressDataChange}
             required
             className="w-full outline-none mb-3 px-4 py-1 rounded-xl border-2 hover:border-gray-900 duration-200"
             type="text"
             name="city"
           />
-          <p className="pl-2 text-xl mb-1">State*</p>
+          <p className="pl-2 text-lg mb-1">State*</p>
           <input
+            placeholder="State"
             onChange={handleAddressDataChange}
             required
             className="w-full outline-none mb-3 px-4 py-1 rounded-xl border-2 hover:border-gray-900 duration-200"

@@ -57,7 +57,7 @@ app.get("/product/:id", async (req, res) => {
 
 // Checkout api
 app.post("/create-checkout-session", async (req, res) => {
-  const { products, addressData } = req.body;
+  const { products, addressData, userData } = req.body;
 
   const productsData = products.map((prod) => ({
     productDetails: prod._id,
@@ -68,6 +68,7 @@ app.post("/create-checkout-session", async (req, res) => {
   const orderData = {
     addressData: addressData,
     productsData: productsData,
+    userData: userData,
   };
 
   try {

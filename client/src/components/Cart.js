@@ -3,14 +3,31 @@ import { CartData } from "../context/cart";
 import CartRow from "./CartRow";
 import "../global.css";
 import { useNavigate } from "react-router";
+import { UserAuth } from "../context/auth";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Cart = () => {
   const { inCart, getTotalCartAmount } = CartData();
   const navigate = useNavigate();
-
+  const { user } = UserAuth();
   let Subtotal = getTotalCartAmount();
 
   const navToCheckout = () => {
+    if (user == null) {
+      toast.error("User not logged in...", {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      return;
+    }
+
     navigate("/checkout");
   };
 
@@ -63,14 +80,29 @@ const Cart = () => {
               })}
             </p>
           </div>
-          <button
-            onClick={navToCheckout}
-            className="mt-3 w-full text-white py-2 border-2 bg-gray-700 border-gray-700 rounded-2xl duration-200 hover:text-black hover:bg-transparent"
-          >
-            Checkout
-          </button>
+          {inCart.length !== 0 && (
+            <button
+              onClick={navToCheckout}
+              className={`mt-3 w-full text-white py-2 border-2 bg-gray-700 border-gray-700 rounded-2xl duration-200 hover:text-black hover:bg-transparent`}
+            >
+              Checkout
+            </button>
+          )}
         </div>
       </div>
+      <ToastContainer
+        className={`overflow-y-hidden`}
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </>
   );
 };
