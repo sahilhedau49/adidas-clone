@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js/pure";
 import { CartData } from "../context/cart";
 import { UserAuth } from "../context/auth";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Checkout = () => {
   const { user } = UserAuth();
   const { inCart } = CartData();
   const [addressData, setAddressData] = useState({
     name: "",
-    phone: "",
-    housenumber: "",
+    phone: 0,
+    housenumber: 0,
     address: "",
-    pincode: "",
+    pincode: 0,
     city: "",
     state: "",
   });
@@ -24,8 +26,43 @@ const Checkout = () => {
     }));
   };
 
+  const isAddressCorrect = () => {
+    if (addressData.phone.length != 10) {
+      toast.error("Phone number is not valid...", {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      return false;
+    }
+    if (addressData.pincode.length != 6) {
+      toast.error("Pincode is not valid...", {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      return false;
+    }
+
+    return true;
+  };
+
   const makePayment = async () => {
     if (inCart.length === 0) {
+      return;
+    }
+
+    if (!isAddressCorrect()) {
       return;
     }
 
@@ -70,9 +107,15 @@ const Checkout = () => {
   return (
     <div>
       <div className="flex flex-col place-items-center">
-        <div className="my-6 text-3xl">
+        <div className="mt-6 mb-4 text-3xl">
           <p className="overflow-y-hidden font-semibold text-gray-800">
             Address Details
+          </p>
+        </div>
+        <div>
+          <p className="pb-2">
+            <span className="text-red-600 font-semibold">Note: </span>Make sure
+            data is filled correct.
           </p>
         </div>
         <div className="w-[30%]">
@@ -149,6 +192,19 @@ const Checkout = () => {
           Place Your Order
         </button>
       </div>
+      <ToastContainer
+        className={`overflow-y-hidden`}
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   );
 };

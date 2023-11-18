@@ -35,30 +35,34 @@ const Product = () => {
 
   return (
     <div className="bg-gray-100">
-      <div className="w-[60%] mx-auto my-20">
+      <div className="w-[60%] mx-auto my-20 md:my-10 md:w-[80%]">
         <div className="flex justify-between mb-10">
-          <h2 className="text-3xl w-[70%] font-bold overflow-y-hidden">
+          <h2 className="text-3xl w-[70%] font-bold overflow-y-hidden md:text-xl">
             {data.name}
           </h2>
-          <h3 className="uppercase text-lg text-slate-500">{data.category}</h3>
+          <h3 className="uppercase text-lg text-slate-500 md:text-sm">
+            {data.category}
+          </h3>
         </div>
         <div>
-          <img className="w-[30%]" src={data.imgUrl} alt="Product" />
+          <img
+            className="w-[30%] md:w-[100%]"
+            src={data.imgUrl}
+            alt="Product"
+          />
         </div>
-        <div className="text-xl text-slate-700 mt-10">
+        <div className="text-xl text-slate-700 mt-10 md:text-sm">
           <p>{data.description}</p>
         </div>
-        <div className="text-2xl my-6 font-semibold">
+        <div className="text-2xl my-6 font-semibold md:text-xl">
           <p>
-            Price:{" "}
-            <span className="line-through mx-2">{data.price + 1000}</span>
-            <span className="text-red-600">{data.price}</span> /-
+            Price: <span className="text-sky-600">{data.price}</span> /-
           </p>
         </div>
         <div>
           <button
             onClick={handleATC}
-            className="btn rounded-lg hover:bg-slate-800 border-2 border-black hover:text-slate-50 py-2 px-6 text-xl"
+            className="btn rounded-lg hover:bg-slate-800 border-2 border-black hover:text-slate-50 py-2 px-6 text-xl md:text-lg md:py-1"
           >
             Add to cart
           </button>

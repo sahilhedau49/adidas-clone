@@ -14,13 +14,13 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex border-b-2 border-slate-950 justify-between w-screen py-6 px-24">
+    <div className="flex border-b-2 border-slate-950 justify-between w-screen py-6 px-24 md:px-2">
       <div>
         <Link to={"/"}>
-          <img className="w-20" src={logo} alt="Adidas Logo" />
+          <img className="w-20 md:w-18 md:pl-4" src={logo} alt="Adidas Logo" />
         </Link>
       </div>
-      <div className="flex place-items-center gap-10">
+      <div className="flex place-items-center gap-10 md:flex-col">
         <Link
           className="text-lg duration-300 font-semibold text-zinc-500 hover:text-black"
           to={"/store/all"}

@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="bg-gray-950 py-20 text-slate-300 text-center">
-      <div>
-        <ul className="flex text-xl gap-8 justify-center">
+    <div className="bg-gray-950 py-20 text-slate-300 text-center md:py-6">
+      <div className="flex place-content-center gap-10">
+        <ul className="flex text-xl gap-10 justify-center md:flex-col md:text-sm md:gap-2">
           <li>
             <Link>About</Link>
           </li>
@@ -15,6 +15,8 @@ const Footer = () => {
           <li>
             <Link>FAQs</Link>
           </li>
+        </ul>
+        <ul className="flex text-xl gap-10 justify-center md:flex-col md:text-sm md:gap-2">
           <li>
             <Link>News</Link>
           </li>
@@ -26,7 +28,7 @@ const Footer = () => {
           </li>
         </ul>
       </div>
-      <h3 className="mt-4 text-slate-500">Design by Sahil Hedau</h3>
+      <h3 className="mt-6 text-slate-500">Design by Sahil Hedau</h3>
     </div>
   );
 };

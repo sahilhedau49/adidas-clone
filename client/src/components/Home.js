@@ -7,7 +7,7 @@ import Fans from "./Fans";
 const Home = () => {
   return (
     <div>
-      <div className="p-20 pt-0">
+      <div className="p-20 pt-0 md:p-0 md:mb-10">
         <Link to={"/store/all"}>
           <video
             src={videomain}
