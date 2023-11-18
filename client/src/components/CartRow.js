@@ -20,6 +20,7 @@ const CartRow = ({ data }) => {
       <img
         className="block mx-auto w-20 my-auto rounded-md"
         src={data.imgUrl}
+        alt="Product View"
       ></img>
       <div className="flex justify-center place-items-center">
         <button

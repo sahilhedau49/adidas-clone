@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const ordersSchema = new mongoose.Schema({
+  orderedAt: {
+    type: Date,
+    default: new Date(),
+  },
   userData: {
     name: {
       type: String,
