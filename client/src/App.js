@@ -16,6 +16,8 @@ import Success from "./components/Success";
 import Cancel from "./components/Cancel";
 import Checkout from "./components/Checkout";
 
+// For mobile development server -- http://192.168.1.4:8000 -- backend link
+
 function App() {
   return (
     <AuthContextProvider>

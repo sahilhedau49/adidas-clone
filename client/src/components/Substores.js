@@ -3,9 +3,9 @@ import { NavLink } from "react-router-dom";
 
 const Substores = ({ category }) => {
   return (
-    <div className="flex text-center justify-center flex-col md:flex-row md:gap-6 md:px-10 md:justify-between">
+    <div className="flex text-center justify-center flex-col md:flex-row md:gap-6 md:px-7 md:justify-between">
       <div className="md:my-auto md:block md:mx-auto">
-        <h1 className="text-3xl font-semibold uppercase overflow-y-hidden md:text-xl">
+        <h1 className="text-3xl font-semibold uppercase overflow-y-hidden md:text-lg">
           {category}
         </h1>
       </div>

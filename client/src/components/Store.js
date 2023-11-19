@@ -40,7 +40,7 @@ const Store = ({ category }) => {
         <p className="text-xl pb-2 md:text-lg md:p-0">Search: </p>
         <input
           onChange={handleSearchChange}
-          className="px-4 py-2 border-2 border-gray-300 focus:border-2 focus:border-gray-950 outline-none duration-200 rounded-xl md:py-1"
+          className="px-4 py-2 border-2 border-gray-300 focus:border-2 focus:border-gray-950 outline-none duration-200 rounded-xl md:py-1 md:w-40"
           type="text"
           placeholder="Search"
         />
