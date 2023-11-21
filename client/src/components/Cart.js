@@ -25,6 +25,9 @@ const Cart = () => {
         progress: undefined,
         theme: "dark",
       });
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
       return;
     }
 

@@ -4,10 +4,13 @@ import { CartData } from "../context/cart";
 import { UserAuth } from "../context/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { OrderData } from "../context/order";
 
 const Checkout = () => {
   const { user } = UserAuth();
+  const { addOrder } = OrderData();
   const { inCart } = CartData();
+
   const [addressData, setAddressData] = useState({
     name: "",
     phone: 0,
@@ -27,9 +30,17 @@ const Checkout = () => {
   };
 
   const isAddressCorrect = () => {
-    if (addressData.phone.length != 10) {
-      toast.error("Phone number is not valid...", {
-        position: "bottom-center",
+    if (
+      addressData.name === "" ||
+      addressData.phone === 0 ||
+      addressData.pincode === 0 ||
+      addressData.address === "" ||
+      addressData.housenumber === 0 ||
+      addressData.state === "" ||
+      addressData.city === ""
+    ) {
+      toast.error("All fields are mandatory...", {
+        position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -40,9 +51,22 @@ const Checkout = () => {
       });
       return false;
     }
-    if (addressData.pincode.length != 6) {
+    if (addressData.phone.length !== 10) {
+      toast.error("Phone number is not valid...", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      return false;
+    }
+    if (addressData.pincode.length !== 6) {
       toast.error("Pincode is not valid...", {
-        position: "bottom-center",
+        position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -81,27 +105,30 @@ const Checkout = () => {
       addressData: addressData,
       userData: userData,
     };
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    const response = await fetch(
-      "http://localhost:8000/create-checkout-session",
-      {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(body),
-      }
-    );
 
-    const session = await response.json();
+    addOrder(body);
 
-    const result = stripe.redirectToCheckout({
-      sessionId: session.id,
-    });
+    // const headers = {
+    //   "Content-Type": "application/json",
+    // };
+    // const response = await fetch(
+    //   "http://localhost:8000/create-checkout-session",
+    //   {
+    //     method: "POST",
+    //     headers: headers,
+    //     body: JSON.stringify(body),
+    //   }
+    // );
 
-    if (result.error) {
-      console.log(result.error);
-    }
+    // const session = await response.json();
+
+    // const result = stripe.redirectToCheckout({
+    //   sessionId: session.id,
+    // });
+
+    // if (result.error) {
+    //   console.log(result.error);
+    // }
   };
 
   return (

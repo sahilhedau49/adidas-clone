@@ -55,8 +55,8 @@ app.get("/product/:id", async (req, res) => {
   res.json(data);
 });
 
-// Checkout api
-app.post("/create-checkout-session", async (req, res) => {
+// After successful payment -- Add ordered data in Database
+app.post("/addOrder", async (req, res) => {
   const { products, addressData, userData } = req.body;
 
   const productsData = products.map((prod) => ({
@@ -77,6 +77,23 @@ app.post("/create-checkout-session", async (req, res) => {
     res.json({ error: error });
     return;
   }
+});
+
+// Checkout api
+app.post("/create-checkout-session", async (req, res) => {
+  const { products, addressData, userData } = req.body;
+
+  const productsData = products.map((prod) => ({
+    productDetails: prod._id,
+    quantity: prod.quantity,
+    totalPrice: prod.totalPrice,
+  }));
+
+  const orderData = {
+    addressData: addressData,
+    productsData: productsData,
+    userData: userData,
+  };
 
   const lineItems = products.map((prod) => ({
     price_data: {
