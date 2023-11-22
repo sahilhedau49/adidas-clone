@@ -60,12 +60,14 @@ const Product = () => {
           </p>
         </div>
         <div>
-          <button
-            onClick={handleATC}
-            className="btn rounded-lg hover:bg-slate-800 border-2 border-black hover:text-slate-50 py-2 px-6 text-xl md:text-lg md:py-1"
-          >
-            Add to cart
-          </button>
+          {data.price && (
+            <button
+              onClick={handleATC}
+              className="btn rounded-lg hover:bg-slate-800 border-2 border-black hover:text-slate-50 py-2 px-6 text-xl md:text-lg md:py-1"
+            >
+              Add to cart
+            </button>
+          )}
           <ToastContainer
             className="overflow-y-hidden"
             position="bottom-center"
