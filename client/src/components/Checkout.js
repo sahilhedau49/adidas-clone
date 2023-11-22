@@ -4,11 +4,9 @@ import { CartData } from "../context/cart";
 import { UserAuth } from "../context/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { OrderData } from "../context/order";
 
 const Checkout = () => {
   const { user } = UserAuth();
-  const { addOrder } = OrderData();
   const { inCart } = CartData();
 
   const [addressData, setAddressData] = useState({
@@ -106,29 +104,27 @@ const Checkout = () => {
       userData: userData,
     };
 
-    addOrder(body);
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    const response = await fetch(
+      "http://localhost:8000/create-checkout-session",
+      {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(body),
+      }
+    );
 
-    // const headers = {
-    //   "Content-Type": "application/json",
-    // };
-    // const response = await fetch(
-    //   "http://localhost:8000/create-checkout-session",
-    //   {
-    //     method: "POST",
-    //     headers: headers,
-    //     body: JSON.stringify(body),
-    //   }
-    // );
+    const session = await response.json();
 
-    // const session = await response.json();
+    const result = stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
 
-    // const result = stripe.redirectToCheckout({
-    //   sessionId: session.id,
-    // });
-
-    // if (result.error) {
-    //   console.log(result.error);
-    // }
+    if (result.error) {
+      console.log(result.error);
+    }
   };
 
   return (

@@ -16,7 +16,6 @@ import Success from "./components/Success";
 import Cancel from "./components/Cancel";
 import Checkout from "./components/Checkout";
 import ProtectCheckout from "./components/ProtectCheckout";
-import { OrderContextProvider } from "./context/order";
 
 // For mobile development server -- http://192.168.1.4:8000 -- backend link
 
@@ -26,47 +25,45 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <CartContextProvider>
-          <OrderContextProvider>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/store/all" element={<Store category="all" />} />
-              <Route path="/store/shoes" element={<Store category="shoes" />} />
-              <Route
-                path="/store/clothing"
-                element={<Store category="clothing" />}
-              />
-              <Route
-                path="/store/accessories"
-                element={<Store category="accessories" />}
-              />
-              <Route
-                path="/store/fanstore"
-                element={<Store category="fanstore" />}
-              />
-              <Route path="/product/:id" element={<Product />} />
-              {/* Will be protected route by user login or not */}
-              <Route path="/cart" element={<Cart />} />
-              <Route
-                path="/login"
-                element={
-                  <ProtectLogin>
-                    <Login />
-                  </ProtectLogin>
-                }
-              />
-              <Route
-                path="/checkout"
-                element={
-                  <ProtectCheckout>
-                    <Checkout />
-                  </ProtectCheckout>
-                }
-              />
-              <Route path="/success" element={<Success />} />
-              <Route path="/cancel" element={<Cancel />} />
-              <Route path="*" element={<Error />} />
-            </Routes>
-          </OrderContextProvider>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/store/all" element={<Store category="all" />} />
+            <Route path="/store/shoes" element={<Store category="shoes" />} />
+            <Route
+              path="/store/clothing"
+              element={<Store category="clothing" />}
+            />
+            <Route
+              path="/store/accessories"
+              element={<Store category="accessories" />}
+            />
+            <Route
+              path="/store/fanstore"
+              element={<Store category="fanstore" />}
+            />
+            <Route path="/product/:id" element={<Product />} />
+            {/* Will be protected route by user login or not */}
+            <Route path="/cart" element={<Cart />} />
+            <Route
+              path="/login"
+              element={
+                <ProtectLogin>
+                  <Login />
+                </ProtectLogin>
+              }
+            />
+            <Route
+              path="/checkout"
+              element={
+                <ProtectCheckout>
+                  <Checkout />
+                </ProtectCheckout>
+              }
+            />
+            <Route path="/success" element={<Success />} />
+            <Route path="/cancel" element={<Cancel />} />
+            <Route path="*" element={<Error />} />
+          </Routes>
         </CartContextProvider>
         <div>
           <Newsletter />
