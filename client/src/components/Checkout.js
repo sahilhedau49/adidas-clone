@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { loadStripe } from "@stripe/stripe-js/pure";
+// import { loadStripe } from "@stripe/stripe-js/pure";
 import { CartData } from "../context/cart";
-import { UserAuth } from "../context/auth";
+// import { UserAuth } from "../context/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Checkout = () => {
-  const { user } = UserAuth();
+  // const { user } = UserAuth();
   const { inCart } = CartData();
 
   const [addressData, setAddressData] = useState({
@@ -88,43 +88,55 @@ const Checkout = () => {
       return;
     }
 
-    let userData = {
-      name: user.displayName,
-      email: user.email,
-      photoUrl: user.photoURL,
-    };
-
-    const stripe = await loadStripe(
-      "pk_test_51OCLURSBwEURRPsmktzwpWbkEkOr6KJo060qt2mDBnT4pu2N6L1YoFPU4g40UZ5InZc0gGNdPq7vuHFCi2gqdY0x00zFkjSIL7"
-    );
-
-    const body = {
-      products: inCart,
-      addressData: addressData,
-      userData: userData,
-    };
-
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    const response = await fetch(
-      "http://localhost:8000/create-checkout-session",
-      {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(body),
-      }
-    );
-
-    const session = await response.json();
-
-    const result = stripe.redirectToCheckout({
-      sessionId: session.id,
+    toast.error("Payment is Disabled 🚫", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
     });
 
-    if (result.error) {
-      console.log(result.error);
-    }
+    return;
+
+    // Payment is blocked...
+
+    // let userData = {
+    //   name: user.displayName,
+    //   email: user.email,
+    //   photoUrl: user.photoURL,
+    // };
+
+    // const stripe = await loadStripe(
+    //   "pk_test_51OCLURSBwEURRPsmktzwpWbkEkOr6KJo060qt2mDBnT4pu2N6L1YoFPU4g40UZ5InZc0gGNdPq7vuHFCi2gqdY0x00zFkjSIL7"
+    // );
+
+    // const body = {
+    //   products: inCart,
+    //   addressData: addressData,
+    //   userData: userData,
+    // };
+
+    // const headers = {
+    //   "Content-Type": "application/json",
+    // };
+    // const response = await fetch(`${api_url}/create-checkout-session`, {
+    //   method: "POST",
+    //   headers: headers,
+    //   body: JSON.stringify(body),
+    // });
+
+    // const session = await response.json();
+
+    // const result = stripe.redirectToCheckout({
+    //   sessionId: session.id,
+    // });
+
+    // if (result.error) {
+    //   console.log(result.error);
+    // }
   };
 
   return (
@@ -217,7 +229,7 @@ const Checkout = () => {
       </div>
       <ToastContainer
         className={`overflow-y-hidden`}
-        position="bottom-center"
+        position="top-center"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}

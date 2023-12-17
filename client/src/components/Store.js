@@ -4,6 +4,7 @@ import axios from "axios";
 import ProductCard from "./ProductCard";
 
 const Store = ({ category }) => {
+  const api_url = process.env.React_App_Backend_API;
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
 
@@ -19,12 +20,12 @@ const Store = ({ category }) => {
     const getData = async (flag) => {
       let querry = flag;
       if (querry === "all") {
-        const dataRsv = await axios.get(`http://localhost:8000/products/all`);
+        const dataRsv = await axios.get(`${api_url}/products/all`);
         setData(dataRsv.data);
         // console.log(dataRsv.data);
       } else {
         const dataRsv = await axios.get(
-          `http://localhost:8000/products?category=${querry}`
+          `${api_url}/products?category=${querry}`
         );
         setData(dataRsv.data);
       }

@@ -1,6 +1,14 @@
 import { initializeApp } from "firebase/app";
-import firebaseConfig from "./firebaseConfig.json";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
+
+const firebaseConfig = {
+  apiKey: process.env.React_App_apiKey,
+  authDomain: process.env.React_App_authDomain,
+  projectId: process.env.React_App_projectId,
+  storageBucket: process.env.React_App_storageBucket,
+  messagingSenderId: process.env.React_App_messagingSenderId,
+  appId: process.env.React_App_appId,
+};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

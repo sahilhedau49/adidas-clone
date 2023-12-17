@@ -6,13 +6,14 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Product = () => {
+  const api_url = process.env.React_App_Backend_API;
   const [data, setData] = useState([]);
   const { id } = useParams();
   const { addToCart } = CartData();
 
   useEffect(() => {
     const getData = async () => {
-      const dataRsv = await axios.get(`http://localhost:8000/product/${id}`);
+      const dataRsv = await axios.get(`${api_url}/product/${id}`);
       setData(dataRsv.data);
     };
 
