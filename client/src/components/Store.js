@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import Substores from "./Substores";
 import axios from "axios";
 import ProductCard from "./ProductCard";
+import ReactLoading from "react-loading";
 
 const Store = ({ category }) => {
   const api_url = process.env.React_App_Backend_API;
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
@@ -18,6 +20,7 @@ const Store = ({ category }) => {
 
   useEffect(() => {
     const getData = async (flag) => {
+      setIsLoading(true);
       let querry = flag;
       if (querry === "all") {
         const dataRsv = await axios.get(`${api_url}/products/all`);
@@ -30,6 +33,7 @@ const Store = ({ category }) => {
         setData(dataRsv.data);
       }
       // console.log(data);
+      setIsLoading(false);
     };
 
     getData(category);
@@ -50,6 +54,17 @@ const Store = ({ category }) => {
         <Substores category={category} />
       </div>
       <div className="w-[80%] mx-auto md:w-[90%]">
+        {isLoading && (
+          <div className="block mb-10">
+            <ReactLoading
+              className="mx-auto"
+              type={"spokes"}
+              color={"black"}
+              height={"10%"}
+              width={"10%"}
+            />
+          </div>
+        )}
         <div className="grid grid-cols-4 gap-1 md:grid-cols-2">
           {filteredData.map((product) => {
             return (
