@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-// import { loadStripe } from "@stripe/stripe-js/pure";
+import { loadStripe } from "@stripe/stripe-js/pure";
 import { CartData } from "../context/cart";
-// import { UserAuth } from "../context/auth";
+import { UserAuth } from "../context/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Checkout = () => {
-  // const { user } = UserAuth();
+  const api_url = process.env.React_App_Backend_API;
+  const { user } = UserAuth();
   const { inCart } = CartData();
 
   const [addressData, setAddressData] = useState({
@@ -88,55 +89,40 @@ const Checkout = () => {
       return;
     }
 
-    toast.error("Payment is Disabled 🚫", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
+    let userData = {
+      name: user.displayName,
+      email: user.email,
+      photoUrl: user.photoURL,
+    };
+
+    const stripe = await loadStripe(
+      "pk_test_51OCLURSBwEURRPsmktzwpWbkEkOr6KJo060qt2mDBnT4pu2N6L1YoFPU4g40UZ5InZc0gGNdPq7vuHFCi2gqdY0x00zFkjSIL7"
+    );
+
+    const body = {
+      products: inCart,
+      addressData: addressData,
+      userData: userData,
+    };
+
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    const response = await fetch(`${api_url}/create-checkout-session`, {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(body),
     });
 
-    return;
+    const session = await response.json();
 
-    // Payment is blocked...
+    const result = stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
 
-    // let userData = {
-    //   name: user.displayName,
-    //   email: user.email,
-    //   photoUrl: user.photoURL,
-    // };
-
-    // const stripe = await loadStripe(
-    //   "pk_test_51OCLURSBwEURRPsmktzwpWbkEkOr6KJo060qt2mDBnT4pu2N6L1YoFPU4g40UZ5InZc0gGNdPq7vuHFCi2gqdY0x00zFkjSIL7"
-    // );
-
-    // const body = {
-    //   products: inCart,
-    //   addressData: addressData,
-    //   userData: userData,
-    // };
-
-    // const headers = {
-    //   "Content-Type": "application/json",
-    // };
-    // const response = await fetch(`${api_url}/create-checkout-session`, {
-    //   method: "POST",
-    //   headers: headers,
-    //   body: JSON.stringify(body),
-    // });
-
-    // const session = await response.json();
-
-    // const result = stripe.redirectToCheckout({
-    //   sessionId: session.id,
-    // });
-
-    // if (result.error) {
-    //   console.log(result.error);
-    // }
+    if (result.error) {
+      console.log(result.error);
+    }
   };
 
   return (
