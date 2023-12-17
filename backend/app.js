@@ -27,7 +27,7 @@ app.post("/", async (req, res) => {
   } catch (error) {
     console.log(error.message);
     res.json({
-      msg: "POST method failed...",
+      msg: error,
     });
     return;
   }
