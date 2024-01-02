@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js/pure";
 import { CartData } from "../context/cart";
-import { UserAuth } from "../context/auth";
+import { useAuth0 } from "@auth0/auth0-react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Checkout = () => {
   const api_url = process.env.React_App_Backend_API;
-  const { user } = UserAuth();
+  const { user } = useAuth0();
   const { inCart } = CartData();
 
   const [addressData, setAddressData] = useState({
@@ -90,9 +90,9 @@ const Checkout = () => {
     }
 
     let userData = {
-      name: user.displayName,
+      name: user.name,
       email: user.email,
-      photoUrl: user.photoURL,
+      photoUrl: user.picture,
     };
 
     const stripe = await loadStripe(

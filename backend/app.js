@@ -5,6 +5,8 @@ const Product = require("./model/product");
 const cors = require("cors");
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 
+// Frontend Deployed URL ==> https://adidas-clone-sahilhedau49.netlify.app
+
 const app = express();
 
 const PORT = process.env.PORT || 8000;

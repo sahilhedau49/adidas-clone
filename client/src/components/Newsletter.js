@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { UserAuth } from "../context/auth";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Newsletter = () => {
-  const { user } = UserAuth();
+  const { user } = useAuth0();
 
   return (
     <div className="p-10 bg-slate-900 text-center">

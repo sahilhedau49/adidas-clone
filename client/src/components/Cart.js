@@ -3,18 +3,18 @@ import { CartData } from "../context/cart";
 import CartRow from "./CartRow";
 import "../global.css";
 import { useNavigate } from "react-router";
-import { UserAuth } from "../context/auth";
+import { useAuth0 } from "@auth0/auth0-react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Cart = () => {
   const { inCart, getTotalCartAmount } = CartData();
   const navigate = useNavigate();
-  const { user } = UserAuth();
+  const { isAuthenticated } = useAuth0();
   let Subtotal = getTotalCartAmount();
 
   const navToCheckout = () => {
-    if (user == null) {
+    if (!isAuthenticated) {
       toast.error("User not logged in...", {
         position: "bottom-center",
         autoClose: 5000,
@@ -26,7 +26,7 @@ const Cart = () => {
         theme: "dark",
       });
       setTimeout(() => {
-        navigate("/login");
+        navigate("/");
       }, 2000);
       return;
     }

@@ -1,17 +1,10 @@
 import React from "react";
 import logo from "../assets/images/logo.png";
 import { Link } from "react-router-dom";
-import { UserAuth } from "../context/auth";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Navbar = () => {
-  const { user, SignOut } = UserAuth();
-  const handleSignOut = async () => {
-    try {
-      await SignOut();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0();
 
   return (
     <div className="flex border-b-2 border-slate-950 justify-between w-screen py-6 px-24 md:px-2">
@@ -33,31 +26,33 @@ const Navbar = () => {
         >
           Cart
         </Link>
-        {!user && (
+        {!isAuthenticated && (
           <Link
             className="text-lg font-semibold duration-300 text-zinc-500 hover:text-black"
-            to={"/login"}
+            onClick={() => loginWithRedirect()}
           >
             Log In
           </Link>
         )}
-        {user && (
+        {isAuthenticated && (
           <>
             <button
               className="text-lg font-semibold duration-300 text-zinc-500 hover:text-black"
-              onClick={handleSignOut}
+              onClick={() =>
+                logout({ logoutParams: { returnTo: window.location.origin } })
+              }
             >
               Log Out
             </button>
 
             <div className="flex gap-2 place-items-center">
               <img
-                src={user.photoURL}
+                src={user.picture}
                 className="w-8 rounded-full"
                 alt="user avatar"
               />
               <div className="text-lg font-semibold duration-300 text-zinc-500 hover:text-black">
-                {user.displayName}
+                {user.name}
               </div>
             </div>
           </>

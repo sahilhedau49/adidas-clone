@@ -1,10 +1,10 @@
-import { UserAuth } from "../context/auth";
+import { useAuth0 } from "@auth0/auth0-react";
 import { Navigate } from "react-router";
 
 const ProtectCheckout = ({ children }) => {
-  const { user } = UserAuth();
-  if (user == null) {
-    return <Navigate to="/login" />;
+  const { isAuthenticated } = useAuth0();
+  if (!isAuthenticated) {
+    return <Navigate to="/" />;
   }
 
   return children;

@@ -17,6 +17,8 @@ import Cancel from "./components/Cancel";
 import Checkout from "./components/Checkout";
 import ProtectCheckout from "./components/ProtectCheckout";
 
+// Backend URL --> https://adidas-api-sahilhedau49.onrender.com
+
 // For mobile development server -- http://192.168.1.4:8000 -- backend link
 
 function App() {
