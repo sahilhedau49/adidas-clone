@@ -9,13 +9,15 @@ import Footer from "./components/Footer";
 import Newsletter from "./components/Newsletter";
 import Product from "./components/Product";
 import { AuthContextProvider } from "./context/auth";
-import Login from "./components/Login";
 import ProtectLogin from "./components/ProtectLogin";
 import { CartContextProvider } from "./context/cart";
 import Success from "./components/Success";
 import Cancel from "./components/Cancel";
 import Checkout from "./components/Checkout";
 import ProtectCheckout from "./components/ProtectCheckout";
+import AdminLogin from "./components/AdminLogin";
+import Dashboard from "./components/Dashboard";
+import ProtectedDashboard from "./components/ProtectedDashboard";
 
 // Backend URL --> https://adidas-api-sahilhedau49.onrender.com
 
@@ -47,11 +49,19 @@ function App() {
             {/* Will be protected route by user login or not */}
             <Route path="/cart" element={<Cart />} />
             <Route
-              path="/login"
+              path="/adminlogin"
               element={
                 <ProtectLogin>
-                  <Login />
+                  <AdminLogin />
                 </ProtectLogin>
+              }
+            />
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedDashboard>
+                  <Dashboard />
+                </ProtectedDashboard>
               }
             />
             <Route

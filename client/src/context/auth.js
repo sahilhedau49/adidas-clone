@@ -1,31 +1,31 @@
-import { onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
-import { auth, provider } from "../Firebase";
+import {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
+import { auth } from "../Firebase";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-  const [user, setUser] = useState({});
+  const [admin, setAdmin] = useState({});
+  const [errWhileLog, setErrWhileLog] = useState("");
 
-  const SignIn = () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        console.log(result.user);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const emailLogIn = (email, password) => {
+    signInWithEmailAndPassword(auth, email, password).catch((error) => {
+      console.log(error);
+      setErrWhileLog(error);
+    });
   };
 
   const SignOut = () => {
-    signOut(auth).then(() => {
-      console.log("Sign out successfully...");
-    });
+    signOut(auth);
   };
 
   useEffect(() => {
     const status = onAuthStateChanged(auth, (user) => {
-      setUser(user);
+      setAdmin(user);
     });
     return () => {
       status();
@@ -35,9 +35,10 @@ export const AuthContextProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
-        user,
-        SignIn,
+        admin,
+        emailLogIn,
         SignOut,
+        errWhileLog,
       }}
     >
       {children}

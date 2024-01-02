@@ -3,9 +3,9 @@ import { UserAuth } from "../context/auth";
 import { Navigate } from "react-router";
 
 const ProtectLogin = ({ children }) => {
-  const { user } = UserAuth();
-  if (user) {
-    return <Navigate to="/" />;
+  const { admin } = UserAuth();
+  if (admin) {
+    return <Navigate to="/dashboard" />;
   }
 
   return children;
