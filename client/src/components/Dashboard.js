@@ -1,23 +1,16 @@
 import React from "react";
-import { UserAuth } from "../context/auth";
+import AdminRepo from "./AdminRepo";
+import AdminControls from "./AdminControls";
 
 const Dashboard = () => {
-  const { SignOut } = UserAuth();
-
-  const handleSignOut = async () => {
-    try {
-      await SignOut();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
-    <div>
-      <div>Dashboard</div>
-      <button onClick={handleSignOut} className="btn">
-        Sign Out
-      </button>
+    <div className="w-full flex gap-4">
+      <div className="w-[80%]">
+        <AdminRepo category="all" />
+      </div>
+      <div className="w-[20%]">
+        <AdminControls />
+      </div>
     </div>
   );
 };

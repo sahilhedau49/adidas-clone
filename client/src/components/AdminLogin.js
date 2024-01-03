@@ -24,47 +24,48 @@ const Login = () => {
   };
 
   return (
-    <div className="overflow-y-hidden min-h-screen bg-base-200">
+    <div className="overflow-y-hidden bg-base-200">
       <div>
-        <p className="italic mt-6 text-center font-extrabold text-[4rem] sm:text-6xl">
+        <p className="mt-16 text-center font-bold text-[3rem]">
           Adidas Admin Login
         </p>
       </div>
       <form>
-        <div className="">
-          <div className="">
-            <label className="">
-              <span className="">Email</span>
+        <div className="w-[40%] mx-auto my-16">
+          <div className="flex justify-between mb-6">
+            <label className="px-4 py-2">
+              <span className="text-2xl">Email</span>
             </label>
             <input
               type="text"
               name="email"
               onChange={getData}
-              placeholder="email"
-              className="input input-bordered"
+              placeholder="Email"
+              className="w-[70%] px-4 text-xl border-2 border-slate-800 rounded-xl"
             />
           </div>
-          <div className="">
-            <label className="">
-              <span className="">Password</span>
+          <div className="flex justify-between mb-6">
+            <label className="px-4 py-2">
+              <span className="text-2xl">Password</span>
             </label>
             <input
               type="password"
               name="password"
               onChange={getData}
-              placeholder="password"
-              className="input input-bordered"
+              placeholder="Password"
+              className="w-[70%] px-4 text-xl border-2 border-slate-800 rounded-xl"
             />
           </div>
 
-          <div className="">
+          <div className="w-40 text-2xl text-slate-100 rounded-xl text-center py-2 mx-auto bg-slate-800 border-2 border-slate-900 hover:bg-transparent duration-300 hover:text-slate-900">
             <button onClick={handleSubmit} className="">
               Log In
             </button>
           </div>
+
+          {errWhileLog && <ErrorLog />}
         </div>
       </form>
-      {errWhileLog && <ErrorLog />}
     </div>
   );
 };
