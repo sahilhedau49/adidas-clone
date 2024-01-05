@@ -1,17 +1,18 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router";
+import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import useStorage from "../hooks/useStorage";
+import ReactLoading from "react-loading";
 
 const UploadProduct = () => {
+  const { uploadProductIntoDB, isStored, setIsStored, loading } = useStorage();
+
   const [formData, setFormData] = useState({
-    imgUrl: "",
+    image: null,
     name: "",
     description: "",
     category: "",
     price: "",
   });
-
-  const navigate = useNavigate();
 
   const validate = () => {
     if (formData.name === "") {
@@ -69,6 +70,22 @@ const UploadProduct = () => {
       });
       return false;
     }
+
+    if (formData.image === null) {
+      toast.error("Please provide image of product", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      return false;
+    }
+
+    return true;
   };
 
   const handleChange = (e) => {
@@ -86,24 +103,35 @@ const UploadProduct = () => {
     }));
   };
 
-  const getImageUrl = () => {
-    // store this image in firebase and get its link
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
-    getImageUrl();
     if (!validate()) return;
-    navigate("/dashboard");
+
+    uploadProductIntoDB(formData);
+    setTimeout(() => setIsStored(false), 10000);
   };
+
+  useEffect(() => {
+    if (isStored) {
+      toast.success("🛒 Product Published!!!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+  }, [isStored]);
 
   return (
     <div className="my-10 mx-auto p-4 w-[40%]">
-      <h1 className="text-3xl text-center mb-10 overflow-y-hidden">
+      <h1 className="text-3xl text-center font-medium mb-10 overflow-y-hidden">
         Upload Product
       </h1>
-      <form onSubmit={handleSubmit} className="">
+      <form>
         <div>
           <label className="mb-2 text-lg">Name:</label>
           <input
@@ -155,9 +183,20 @@ const UploadProduct = () => {
             className="mb-3"
           />
         </div>
+        {loading && (
+          <div className="block mb-10">
+            <ReactLoading
+              className="mx-auto"
+              type={"cylon"}
+              color={"black"}
+              height={"10%"}
+              width={"10%"}
+            />
+          </div>
+        )}
         <div className="text-center mt-6">
           <button
-            type="submit"
+            onClick={handleSubmit}
             className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
           >
             Upload

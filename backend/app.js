@@ -21,7 +21,7 @@ app.get("/", (res, req) => {
   });
 });
 
-app.post("/", async (req, res) => {
+app.post("/product", async (req, res) => {
   const data = req.body;
   try {
     await Product.insertMany([data]);
