@@ -56,6 +56,19 @@ app.get("/product/:id", async (req, res) => {
   res.json(data);
 });
 
+// Delete product by id
+app.delete("/product/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Product.findByIdAndDelete(id);
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+  res.status(200).json({
+    msg: "Data deleted...",
+  });
+});
+
 // Checkout api
 app.post("/create-checkout-session", async (req, res) => {
   // const { products, addressData, userData } = req.body;

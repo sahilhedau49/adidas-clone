@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import ProductCard from "./ProductCard";
 import ReactLoading from "react-loading";
+import AdminProductCard from "./AdminProductCard";
 
 const AdminRepo = ({ category }) => {
   const api_url = process.env.React_App_Backend_API;
@@ -68,7 +68,7 @@ const AdminRepo = ({ category }) => {
         <div className="grid grid-cols-3 gap-1 md:grid-cols-2">
           {filteredData.map((product) => {
             return (
-              <ProductCard
+              <AdminProductCard
                 key={product._id}
                 id={product._id}
                 name={product.name}
