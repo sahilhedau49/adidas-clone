@@ -38,9 +38,6 @@ const useStorage = () => {
           price: formData.price,
         };
 
-        console.log(dataToStore); // Working ...
-
-        // make post req
         try {
           const res = await axios.post(
             `${process.env.React_App_Backend_API}/product`,

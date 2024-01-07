@@ -19,6 +19,7 @@ import AdminLogin from "./components/AdminLogin";
 import Dashboard from "./components/Dashboard";
 import ProtectedDashboard from "./components/ProtectedDashboard";
 import UploadProduct from "./components/UploadProduct";
+import EditProduct from "./components/EditProduct";
 
 // Backend URL --> https://adidas-api-sahilhedau49.onrender.com
 
@@ -66,6 +67,10 @@ function App() {
               }
             />
             <Route path="/dashboard/upload" element={<UploadProduct />} />
+            <Route
+              path="/dashboard/editProduct/:id"
+              element={<EditProduct />}
+            />
 
             <Route
               path="/checkout"

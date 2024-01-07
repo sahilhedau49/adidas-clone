@@ -69,6 +69,19 @@ app.delete("/product/:id", async (req, res) => {
   });
 });
 
+app.put("/productUpdate/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const data = req.body;
+    await Product.findByIdAndUpdate({ _id: id }, data);
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+  res.status(200).json({
+    msg: "Data Updated...",
+  });
+});
+
 // Checkout api
 app.post("/create-checkout-session", async (req, res) => {
   // const { products, addressData, userData } = req.body;

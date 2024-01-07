@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import Zoom from "react-reveal/Zoom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ReactLoading from "react-loading";
 import { ToastContainer, toast } from "react-toastify";
@@ -9,6 +8,7 @@ const AdminProductCard = (props) => {
   const { id, name, price, imgUrl } = props;
 
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleDelete = async () => {
     setLoading(true);
@@ -69,7 +69,12 @@ const AdminProductCard = (props) => {
       </Link>
       <div className="flex justify-between px-6 pb-4 opacity-50 hover:opacity-100 duration-300">
         <div>
-          <button className="px-2 py-[2px] rounded-md bg-slate-300 border-2 border-slate-700">
+          <button
+            onClick={() => {
+              navigate(`/dashboard/editProduct/${id}`);
+            }}
+            className="px-2 py-[2px] rounded-md bg-slate-300 border-2 border-slate-700"
+          >
             Edit
           </button>
         </div>
