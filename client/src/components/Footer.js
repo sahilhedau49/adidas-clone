@@ -28,7 +28,13 @@ const Footer = () => {
           </li>
         </ul>
       </div>
-      <h3 className="mt-6 text-slate-500">Design by Sahil Hedau</h3>
+      <h3 className="mt-6 text-slate-500">
+        Developed by {` `}
+        <a href="https://github.com/sahilhedau49" className="underline">
+          Sahil Hedau
+        </a>
+        {` 🔗`}
+      </h3>
     </div>
   );
 };

@@ -1,9 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { ToastContainer, toast } from "react-toastify";
 
 const Newsletter = () => {
   const { user } = useAuth0();
+
+  const handleSubscribe = () => {
+    toast.success("😇 You have successfully subscribed to our newsletter", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
 
   return (
     <div className="p-10 bg-slate-900 text-center">
@@ -17,10 +30,25 @@ const Newsletter = () => {
           value={user?.email || ``}
           placeholder="john@gmail.com"
         />
-        <button className="btn btn-hover2 text-lg font-medium bg-slate-900 text-white px-10 py-1 border-2 rounded-full md:text-base md:py-1 md:w-fit md:mx-auto">
-          <Link>Subscribe</Link>
+        <button
+          onClick={handleSubscribe}
+          className="btn btn-hover2 text-lg font-medium bg-slate-900 text-white px-10 py-1 border-2 rounded-full md:text-base md:py-1 md:w-fit md:mx-auto"
+        >
+          Subscribe
         </button>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   );
 };
