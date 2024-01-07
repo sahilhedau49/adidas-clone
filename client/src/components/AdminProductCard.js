@@ -56,11 +56,11 @@ const AdminProductCard = (props) => {
           </p>
         </div>
         {loading && (
-          <div className="block mb-10">
+          <div className="block">
             <ReactLoading
-              className="mx-auto"
-              type={"cylon"}
-              color={"black"}
+              className="mx-auto mt-2"
+              type={"spin"}
+              color={"gray"}
               height={"10%"}
               width={"10%"}
             />

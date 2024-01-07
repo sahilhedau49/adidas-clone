@@ -59,7 +59,7 @@ const AdminRepo = ({ category }) => {
             <ReactLoading
               className="mx-auto"
               type={"spokes"}
-              color={"black"}
+              color={"gray"}
               height={"10%"}
               width={"10%"}
             />

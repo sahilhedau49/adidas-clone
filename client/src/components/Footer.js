@@ -30,7 +30,11 @@ const Footer = () => {
       </div>
       <h3 className="mt-6 text-slate-500">
         Developed by {` `}
-        <a href="https://github.com/sahilhedau49" className="underline">
+        <a
+          href="https://github.com/sahilhedau49"
+          target="_blank"
+          className="underline"
+        >
           Sahil Hedau
         </a>
         {` 🔗`}

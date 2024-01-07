@@ -187,8 +187,8 @@ const UploadProduct = () => {
           <div className="block mb-10">
             <ReactLoading
               className="mx-auto"
-              type={"cylon"}
-              color={"black"}
+              type={"spin"}
+              color={"gray"}
               height={"10%"}
               width={"10%"}
             />
