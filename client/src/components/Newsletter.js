@@ -25,7 +25,7 @@ const Newsletter = () => {
       </div>
       <div className="flex justify-center gap-4 md:flex-col">
         <input
-          className="text-lg font-medium text-slate-200 outline-none bg-opacity-20 bg-white py-2 px-8 rounded-full md:text-base md:py-1"
+          className="text-lg font-medium text-slate-200 outline-none bg-opacity-20 bg-white py-2 px-8 rounded-full md:text-base md:py-1 md:w-[60%] md:mx-auto"
           type="email"
           value={user?.email || ``}
           placeholder="john@gmail.com"

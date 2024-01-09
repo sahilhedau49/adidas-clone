@@ -34,6 +34,7 @@ const Footer = () => {
           href="https://github.com/sahilhedau49"
           target="_blank"
           className="underline"
+          rel="noreferrer"
         >
           Sahil Hedau
         </a>

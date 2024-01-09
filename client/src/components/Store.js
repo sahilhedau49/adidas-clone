@@ -5,7 +5,6 @@ import ProductCard from "./ProductCard";
 import ReactLoading from "react-loading";
 
 const Store = ({ category }) => {
-  const api_url = process.env.React_App_Backend_API;
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -23,12 +22,14 @@ const Store = ({ category }) => {
       setIsLoading(true);
       let querry = flag;
       if (querry === "all") {
-        const dataRsv = await axios.get(`${api_url}/products/all`);
+        const dataRsv = await axios.get(
+          `${process.env.React_App_Backend_API}/products/all`
+        );
         setData(dataRsv.data);
         // console.log(dataRsv.data);
       } else {
         const dataRsv = await axios.get(
-          `${api_url}/products?category=${querry}`
+          `${process.env.React_App_Backend_API}/products?category=${querry}`
         );
         setData(dataRsv.data);
       }

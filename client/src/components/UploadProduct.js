@@ -154,13 +154,17 @@ const UploadProduct = () => {
         </div>
         <div>
           <label className="mb-2 text-lg">Category:</label>
-          <input
-            type="text"
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
+          <select
             className="mb-3 p-2 w-full border-2 hover:border-slate-400 rounded"
-          />
+            name="category"
+            onChange={handleChange}
+          >
+            <option value="">-- Select --</option>
+            <option value="shoes">Shoes</option>
+            <option value="clothing">Clothing</option>
+            <option value="accessories">Accessories</option>
+            <option value="fanstore">Fanstore</option>
+          </select>
         </div>
         <div>
           <label className="mb-2 text-lg">Price:</label>

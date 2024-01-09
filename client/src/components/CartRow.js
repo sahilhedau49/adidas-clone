@@ -15,13 +15,16 @@ const CartRow = ({ data }) => {
   const shouldIncDisableBtn = getQuantity(data._id) === 10;
 
   return (
-    <div className="grid-cart border-b-[1px] py-6 border-slate-700">
-      <div className="my-auto text-[0.9rem] px-4">{data.name}</div>
+    <div className="grid grid-cart border-b-[1px] border-slate-700 py-6">
+      <div className="my-auto text-[0.9rem] px-4 md:mb-6 md:h-full md:flex">
+        <p className="md:my-auto">{data.name}</p>
+      </div>
       <img
-        className="block mx-auto w-20 my-auto rounded-md"
+        className="block mx-auto w-20 my-auto rounded-md md:mb-6"
         src={data.imgUrl}
         alt="Product View"
       ></img>
+      <div className="hidden md:block"></div>
       <div className="flex justify-center place-items-center">
         <button
           disabled={shouldDecDisableBtn}
@@ -49,7 +52,7 @@ const CartRow = ({ data }) => {
           currency: "INR",
         })}
       </div>
-      <div className="my-auto text-2xl text-gray-800">
+      <div className="my-auto text-2xl text-gray-800 md:mt-[-4rem] md:text-4xl">
         <button onClick={handleDel} className="duration-200 hover:text-red-600">
           <AiFillDelete />
         </button>

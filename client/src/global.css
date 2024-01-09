@@ -46,7 +46,6 @@
 }
 
 .grid-cart {
-  display: grid;
   grid-template-columns: 2fr 2fr 2fr 2fr 1fr;
 }
 
@@ -54,4 +53,10 @@
   background: rgba(66, 66, 66, 0.1);
   border: 1px solid #fff;
   box-shadow: 0 0 20px #bbb;
+}
+
+@media (max-width: 767px) {
+  .grid-cart {
+    grid-template-columns: 2fr 2fr 1fr;
+  }
 }

@@ -139,7 +139,7 @@ const Checkout = () => {
             data is filled correct.
           </p>
         </div>
-        <div className="w-[30%]">
+        <div className="w-[30%] mt-4 md:w-[80%]">
           <p className="pl-2 text-lg mb-1">Full Name*</p>
           <input
             placeholder="Full Name"
@@ -205,10 +205,10 @@ const Checkout = () => {
           />
         </div>
       </div>
-      <div className="">
+      <div>
         <button
           onClick={makePayment}
-          className="block mx-auto w-[15%] my-10 text-white py-2 border-2 font-semibold bg-green-600 border-green-600 rounded-2xl duration-200 hover:text-black hover:bg-transparent"
+          className="block mx-auto w-[15%] my-10 text-white py-2 border-2 font-semibold bg-green-600 border-green-600 rounded-2xl duration-200 hover:text-black hover:bg-transparent md:w-[60%]"
         >
           Place Your Order
         </button>

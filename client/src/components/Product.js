@@ -25,7 +25,7 @@ const Product = () => {
     toast.success("Added to cart 🛒", {
       position: "top-center",
       autoClose: 5000,
-      hideProgressBar: false,
+      hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,

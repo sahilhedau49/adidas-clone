@@ -36,10 +36,10 @@ const Cart = () => {
 
   return (
     <>
-      <div className="flex md:flex-col">
-        <div className="w-[65%] pb-6 flex flex-col my-10 mx-10 text-center md:w-[100%]">
-          <div className="bg-gray-400">
-            <ul className="grid-cart border-b-[1px] font-medium border-black py-6">
+      <div className="flex md:flex-col-reverse">
+        <div className="w-[65%] pb-6 flex flex-col my-10 mx-10 text-center md:w-[100%] md:mx-0">
+          <div className="bg-gray-400 md:hidden">
+            <ul className="grid grid-cart border-b-[1px] font-medium border-black py-6">
               <li>Name</li>
               <li>Image</li>
               <li>Quantity</li>
@@ -59,7 +59,7 @@ const Cart = () => {
             })}
           </div>
         </div>
-        <div className="w-[30%] px-14 py-10 rounded-l-[50px] h-fit m-10 mr-0 summary-box md:w-[100%]">
+        <div className="w-[30%] px-14 py-10 rounded-l-[50px] h-fit m-10 mr-0 summary-box md:mb-4 md:w-[100%]">
           <h1 className="mb-6 text-3xl overflow-y-hidden">Summary</h1>
           <div className="flex justify-between mb-3">
             <p className="text-xl text-gray-800">Subtotal: </p>
