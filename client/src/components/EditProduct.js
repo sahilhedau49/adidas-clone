@@ -135,7 +135,7 @@ const EditProduct = () => {
   };
 
   return (
-    <div className="my-10 mx-auto p-4 w-[40%]">
+    <div className="my-10 mx-auto p-4 w-[40%] md:w-[80%]">
       <h1 className="text-3xl text-center font-medium mb-10 overflow-y-hidden">
         Edit Product
       </h1>

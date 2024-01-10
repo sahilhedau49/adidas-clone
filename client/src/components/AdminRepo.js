@@ -39,9 +39,11 @@ const AdminRepo = ({ category }) => {
   }, [category]);
 
   return (
-    <div className="relative bg-gray-100 p-20">
-      <div className="flex justify-between mb-10">
-        <h1 className="overflow-y-hidden font-semibold text-4xl">Products</h1>
+    <div className="relative bg-gray-100 px-20 py-10 md:px-3 md:py-10">
+      <div className="flex justify-between mb-14 md:px-4">
+        <h1 className="flex overflow-y-hidden font-semibold text-4xl md:text-3xl place-items-center">
+          Products
+        </h1>
         <div className="">
           <p className="text-xl pb-2 md:text-lg md:p-0">Search: </p>
           <input
@@ -53,7 +55,7 @@ const AdminRepo = ({ category }) => {
         </div>
       </div>
 
-      <div className="w-[80%] mx-auto md:w-[90%]">
+      <div className="w-[80%] mx-auto md:w-[100%]">
         {isLoading && (
           <div className="block mb-10">
             <ReactLoading

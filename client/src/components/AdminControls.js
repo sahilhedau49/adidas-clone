@@ -20,7 +20,7 @@ const AdminControls = () => {
   };
 
   return (
-    <div className="mt-10 h-[80vh]">
+    <div className="mt-10 h-[80vh] md:h-fit">
       <div className="h-[50%]">
         <div className="info">
           <h1 className="overflow-y-hidden mb-6 text-3xl font-semibold text-center">
@@ -38,7 +38,7 @@ const AdminControls = () => {
           </button>
         </div>
       </div>
-      <div className="h-[50%] bg-slate-400 rounded-2xl flex border-2 duration-300 border-slate-500 hover:bg-slate-300">
+      <div className="h-[50%] bg-slate-300 rounded-2xl flex border-2 duration-300 border-slate-500 hover:bg-zinc-300 md:h-[6rem] md:w-[40%] md:mx-auto md:mt-8">
         <button
           onClick={handleUploadClick}
           className="block mx-auto text-xl font-medium"

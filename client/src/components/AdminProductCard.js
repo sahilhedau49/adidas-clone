@@ -67,7 +67,7 @@ const AdminProductCard = (props) => {
           </div>
         )}
       </Link>
-      <div className="flex justify-between px-6 pb-4 opacity-50 hover:opacity-100 duration-300">
+      <div className="flex justify-between px-6 pb-4 opacity-50 hover:opacity-100 duration-300 md:px-3">
         <div>
           <button
             onClick={() => {

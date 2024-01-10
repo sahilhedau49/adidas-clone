@@ -26,12 +26,12 @@ const Login = () => {
   return (
     <div className="overflow-y-hidden bg-base-200">
       <div>
-        <p className="mt-16 text-center font-bold text-[3rem]">
+        <p className="mt-16 text-center font-bold text-[3rem] md:text-3xl">
           Adidas Admin Login
         </p>
       </div>
       <form>
-        <div className="w-[40%] mx-auto my-16">
+        <div className="w-[40%] mx-auto my-16 md:w-[90%]">
           <div className="flex justify-between mb-6">
             <label className="px-4 py-2">
               <span className="text-2xl">Email</span>
@@ -41,7 +41,7 @@ const Login = () => {
               name="email"
               onChange={getData}
               placeholder="Email"
-              className="w-[70%] px-4 text-xl border-2 border-slate-800 rounded-xl"
+              className="w-[70%] px-4 text-xl border-2 border-slate-800 rounded-xl md:w-[60%]"
             />
           </div>
           <div className="flex justify-between mb-6">
@@ -53,7 +53,7 @@ const Login = () => {
               name="password"
               onChange={getData}
               placeholder="Password"
-              className="w-[70%] px-4 text-xl border-2 border-slate-800 rounded-xl"
+              className="w-[70%] px-4 text-xl border-2 border-slate-800 rounded-xl md:w-[60%]"
             />
           </div>
 
