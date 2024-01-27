@@ -60,3 +60,7 @@
     grid-template-columns: 2fr 2fr 1fr;
   }
 }
+
+.mobile-nav-bg {
+  backdrop-filter: blur(200px);
+}

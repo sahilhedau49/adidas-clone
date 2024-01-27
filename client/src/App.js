@@ -21,6 +21,8 @@ import ProtectedDashboard from "./components/ProtectedDashboard";
 import UploadProduct from "./components/UploadProduct";
 import EditProduct from "./components/EditProduct";
 
+// Build folder file --> _redirects = /* /index.html 200
+
 // Backend URL --> https://adidas-api-sahilhedau49.onrender.com
 
 // For mobile development server -- http://192.168.1.4:8000 -- backend link

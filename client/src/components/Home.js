@@ -1,5 +1,5 @@
 import React from "react";
-import videomain from "../assets/videos/videomain.mp4";
+import videomain from "../assets/videos/adidas-ad.mp4";
 import { Link } from "react-router-dom";
 import Sections from "./Sections";
 import Fans from "./Fans";

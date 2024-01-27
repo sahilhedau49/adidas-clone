@@ -60,10 +60,12 @@ const Cart = () => {
           </div>
         </div>
         <div className="w-[30%] px-14 py-10 rounded-l-[50px] h-fit m-10 mr-0 summary-box md:mb-4 md:w-[100%]">
-          <h1 className="mb-6 text-3xl overflow-y-hidden">Summary</h1>
+          <h1 className="mb-6 text-3xl overflow-y-hidden md:text-2xl">
+            Summary
+          </h1>
           <div className="flex justify-between mb-3">
-            <p className="text-xl text-gray-800">Subtotal: </p>
-            <p className="text-lg font-semibold">
+            <p className="text-xl text-gray-800 md:text-lg">Subtotal: </p>
+            <p className="text-lg font-semibold md:text-base">
               {Subtotal.toLocaleString("en-IN", {
                 style: "currency",
                 currency: "INR",
@@ -71,12 +73,17 @@ const Cart = () => {
             </p>
           </div>
           <div className="flex justify-between pb-3 border-b-2 border-neutral-950">
-            <p className="text-xl text-gray-800">Delivery Charges: </p>
-            <p className="text-lg font-semibold text-green-600"> FREE</p>
+            <p className="text-xl text-gray-800 md:text-lg">
+              Delivery Charges:{" "}
+            </p>
+            <p className="text-lg font-semibold text-green-600 md:text-base">
+              {" "}
+              FREE
+            </p>
           </div>
           <div className="flex justify-between my-3">
             <p className="text-xl text-gray-800">Total: </p>
-            <p className="text-xl font-semibold">
+            <p className="text-xl font-semibold md:text-lg">
               {Subtotal.toLocaleString("en-IN", {
                 style: "currency",
                 currency: "INR",
@@ -86,7 +93,7 @@ const Cart = () => {
           {inCart.length !== 0 && (
             <button
               onClick={navToCheckout}
-              className={`mt-3 w-full text-white py-2 border-2 bg-gray-700 border-gray-700 rounded-2xl duration-200 hover:text-black hover:bg-transparent`}
+              className={`mt-3 w-full text-white py-2 border-2 bg-gray-700 border-gray-700 rounded-2xl duration-200 text-lg hover:text-black hover:bg-transparent md:text-base`}
             >
               Checkout
             </button>

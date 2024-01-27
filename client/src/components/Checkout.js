@@ -134,7 +134,7 @@ const Checkout = () => {
           </p>
         </div>
         <div>
-          <p className="pb-2">
+          <p className="pb-2 md:text-base">
             <span className="text-red-600 font-semibold">Note: </span>Make sure
             data is filled correct.
           </p>
