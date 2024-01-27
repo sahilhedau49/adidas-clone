@@ -8,8 +8,8 @@ const Newsletter = () => {
   const handleSubscribe = () => {
     toast.success("😇 You have successfully subscribed to our newsletter", {
       position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
+      autoClose: 3000,
+      hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
@@ -37,18 +37,7 @@ const Newsletter = () => {
           Subscribe
         </button>
       </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
+      <ToastContainer />
     </div>
   );
 };

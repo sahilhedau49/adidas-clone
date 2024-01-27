@@ -4,7 +4,7 @@ import CartRow from "./CartRow";
 import "../global.css";
 import { useNavigate } from "react-router";
 import { useAuth0 } from "@auth0/auth0-react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Cart = () => {
@@ -15,22 +15,18 @@ const Cart = () => {
 
   const navToCheckout = () => {
     if (!isAuthenticated) {
-      toast.error("User not logged in...", {
+      toast.error("Please Login", {
         position: "bottom-center",
-        autoClose: 5000,
-        hideProgressBar: false,
+        autoClose: 3000,
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
         theme: "dark",
       });
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
       return;
     }
-
     navigate("/checkout");
   };
 
@@ -100,19 +96,6 @@ const Cart = () => {
           )}
         </div>
       </div>
-      <ToastContainer
-        className={`overflow-y-hidden`}
-        position="bottom-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
     </>
   );
 };

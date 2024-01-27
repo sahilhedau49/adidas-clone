@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import useStorage from "../hooks/useStorage";
 import ReactLoading from "react-loading";
 
@@ -18,8 +18,8 @@ const UploadProduct = () => {
     if (formData.name === "") {
       toast.error("Please provide name of product", {
         position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
+        autoClose: 3000,
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
@@ -32,8 +32,8 @@ const UploadProduct = () => {
     if (formData.description === "") {
       toast.error("Please provide description of product", {
         position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
+        autoClose: 3000,
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
@@ -46,8 +46,8 @@ const UploadProduct = () => {
     if (formData.category === "") {
       toast.error("Please provide category of product", {
         position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
+        autoClose: 3000,
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
@@ -60,8 +60,8 @@ const UploadProduct = () => {
     if (formData.price === "") {
       toast.error("Please provide price of product", {
         position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
+        autoClose: 3000,
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
@@ -74,8 +74,8 @@ const UploadProduct = () => {
     if (formData.image === null) {
       toast.error("Please provide image of product", {
         position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
+        autoClose: 3000,
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
@@ -84,7 +84,6 @@ const UploadProduct = () => {
       });
       return false;
     }
-
     return true;
   };
 
@@ -115,7 +114,7 @@ const UploadProduct = () => {
     if (isStored) {
       toast.success("🛒 Product Published!!!", {
         position: "top-right",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -207,18 +206,6 @@ const UploadProduct = () => {
           </button>
         </div>
       </form>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
     </div>
   );
 };

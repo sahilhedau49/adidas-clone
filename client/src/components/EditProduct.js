@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 import ReactLoading from "react-loading";
@@ -37,8 +37,8 @@ const EditProduct = () => {
     if (formData.name === "") {
       toast.error("Please provide name of product", {
         position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
+        autoClose: 3000,
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
@@ -51,8 +51,8 @@ const EditProduct = () => {
     if (formData.description === "") {
       toast.error("Please provide description of product", {
         position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
+        autoClose: 3000,
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
@@ -65,8 +65,8 @@ const EditProduct = () => {
     if (formData.category === "") {
       toast.error("Please provide category of product", {
         position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
+        autoClose: 3000,
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
@@ -79,8 +79,8 @@ const EditProduct = () => {
     if (formData.price === "") {
       toast.error("Please provide price of product", {
         position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
+        autoClose: 3000,
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
@@ -116,7 +116,7 @@ const EditProduct = () => {
       if (res.status === 200) {
         toast.success("🛒 Product Updated!!!", {
           position: "top-right",
-          autoClose: 5000,
+          autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -131,7 +131,7 @@ const EditProduct = () => {
 
     setTimeout(() => {
       navigate("/dashboard");
-    }, 5000);
+    }, 3000);
   };
 
   return (
@@ -200,18 +200,6 @@ const EditProduct = () => {
           </button>
         </div>
       </form>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
     </div>
   );
 };

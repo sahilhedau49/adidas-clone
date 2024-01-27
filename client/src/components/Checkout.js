@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js/pure";
 import { CartData } from "../context/cart";
 import { useAuth0 } from "@auth0/auth0-react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Checkout = () => {
@@ -38,10 +38,10 @@ const Checkout = () => {
       addressData.state === "" ||
       addressData.city === ""
     ) {
-      toast.error("All fields are mandatory...", {
+      toast.error("All fields are mandatory", {
         position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
+        autoClose: 3000,
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
@@ -51,10 +51,10 @@ const Checkout = () => {
       return false;
     }
     if (addressData.phone.length !== 10) {
-      toast.error("Phone number is not valid...", {
+      toast.error("Phone number is not valid", {
         position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
+        autoClose: 3000,
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
@@ -64,10 +64,10 @@ const Checkout = () => {
       return false;
     }
     if (addressData.pincode.length !== 6) {
-      toast.error("Pincode is not valid...", {
+      toast.error("Pincode is not valid", {
         position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
+        autoClose: 3000,
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
@@ -213,19 +213,6 @@ const Checkout = () => {
           Place Your Order
         </button>
       </div>
-      <ToastContainer
-        className={`overflow-y-hidden`}
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
     </div>
   );
 };

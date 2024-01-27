@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { CartData } from "../context/cart";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Product = () => {
@@ -24,7 +24,7 @@ const Product = () => {
     addToCart(data);
     toast.success("Added to cart 🛒", {
       position: "top-center",
-      autoClose: 5000,
+      autoClose: 3000,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
@@ -69,19 +69,6 @@ const Product = () => {
               Add to cart
             </button>
           )}
-          <ToastContainer
-            className="overflow-y-hidden"
-            position="bottom-center"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="dark"
-          />
         </div>
       </div>
     </div>

@@ -3,7 +3,6 @@ import logo from "../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { CgMenu, CgClose } from "react-icons/cg";
-import Fade from "react-reveal/Fade";
 
 const Navbar = () => {
   const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0();
@@ -18,7 +17,7 @@ const Navbar = () => {
       </div>
       <div
         className={`flex place-items-center gap-10 md:duration-300 md:flex-col md:z-10 md:gap-8 mobile-nav-bg md:text-black md:absolute md:top-0 md:py-20 md:left-0 md:w-[100vw] md:h-fit ${
-          openMenu ? "md:translate-x-0" : "md:translate-x-full"
+          openMenu ? "md:translate-x-0" : "md:hidden"
         }`}
       >
         <Link
