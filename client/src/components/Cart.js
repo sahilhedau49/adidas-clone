@@ -59,7 +59,7 @@ const Cart = () => {
             })}
           </div>
         </div>
-        <div className="w-[30%] px-14 py-10 rounded-l-[50px] h-fit m-10 mr-0 summary-box md:mb-4 md:w-[100%]">
+        <div className="w-[30%] px-14 py-10 rounded-l-[50px] h-fit m-10 mr-0 summary-box md:ml-auto md:px-10 md:mb-4 md:w-[90%]">
           <h1 className="mb-6 text-3xl overflow-y-hidden md:text-2xl">
             Summary
           </h1>
