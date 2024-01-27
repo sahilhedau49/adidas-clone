@@ -51,7 +51,7 @@ const Store = ({ category }) => {
           placeholder="Search"
         />
       </div>
-      <div className="my-20 md:my-10">
+      <div className="py-20 md:py-10">
         <Substores category={category} />
       </div>
       <div className="w-[80%] mx-auto md:w-[90%]">

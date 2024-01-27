@@ -36,7 +36,7 @@ const Product = () => {
 
   return (
     <div className="bg-gray-100">
-      <div className="w-[60%] mx-auto my-20 md:my-10 md:w-[80%]">
+      <div className="w-[60%] mx-auto py-20 md:py-10 md:w-[80%]">
         <div className="flex justify-between mb-10">
           <h2 className="text-3xl w-[70%] font-bold overflow-y-hidden md:text-xl">
             {data.name}
