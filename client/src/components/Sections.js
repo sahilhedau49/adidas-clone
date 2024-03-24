@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const Sections = () => {
   return (
     <div className="flex justify-center mb-8">
-      <div className="flex w-[70%] gap-8 overflow-y-hidden md:gap-2 md:w-[90%]">
+      <div className="flex w-[70%] gap-8 overflow-x-hidden overflow-y-hidden md:gap-2 md:w-[90%]">
         <div className="w-[50%] relative card-hover overflow-y-hidden">
           <Link to={"/store/shoes"}>
             <img className="min-h-full min-w-full" src={Shoes} alt="shoes" />
@@ -17,8 +17,8 @@ const Sections = () => {
             </p>
           </Link>
         </div>
-        <div className="flex flex-col w-[50%] gap-8 overflow-y-hidden md:gap-2">
-          <div className="relative card-hover overflow-y-hidden">
+        <div className="flex flex-col w-[50%] gap-8 overflow-hidden md:gap-2">
+          <div className="relative card-hover overflow-hidden">
             <Link to={"/store/clothing"}>
               <img
                 className="min-h-full min-w-full"
@@ -30,7 +30,7 @@ const Sections = () => {
               </p>
             </Link>
           </div>
-          <div className="relative card-hover overflow-y-hidden">
+          <div className="relative card-hover overflow-hidden">
             <Link to={"/store/accessories"}>
               <img
                 className="min-h-full min-w-full"
