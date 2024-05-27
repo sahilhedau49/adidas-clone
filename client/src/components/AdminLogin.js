@@ -5,6 +5,7 @@ import ErrorLog from "./ErrorLog";
 const Login = () => {
   const [data, setData] = useState({ email: "", password: "" });
   const { emailLogIn, errWhileLog } = UserAuth();
+  // rshp
 
   const getData = (e) => {
     const { name, value } = e.target;
