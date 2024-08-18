@@ -33,15 +33,6 @@ app.post(
     switch (event.type) {
       case "payment_intent.succeeded":
         const paymentIntent = event.data.object;
-        const result = Promise.all([
-          stripe.checkout.sessions.retrieve(req.query.session_id, {
-            expand: ["payment_intent.payment_method"],
-          }),
-          stripe.checkout.sessions.listLineItems(req.query.session_id),
-        ]);
-
-        console.log(result);
-
         console.log("Payment Intent --> ", paymentIntent);
         break;
       default:
@@ -127,19 +118,19 @@ app.put("/productUpdate/:id", async (req, res) => {
 
 // Checkout api
 app.post("/create-checkout-session", async (req, res) => {
-  // const { products, addressData, userData } = req.body;
+  const { products, addressData, userData } = req.body;
 
-  // const productsData = products.map((prod) => ({
-  //   productDetails: prod._id,
-  //   quantity: prod.quantity,
-  //   totalPrice: prod.totalPrice,
-  // }));
+  const productsData = products.map((prod) => ({
+    productDetails: prod._id,
+    quantity: prod.quantity,
+    totalPrice: prod.totalPrice,
+  }));
 
-  // const orderData = {
-  //   addressData: addressData,
-  //   productsData: productsData,
-  //   userData: userData,
-  // };
+  const orderData = {
+    // addressData: addressData,
+    productsData: productsData,
+    // userData: userData,
+  };
 
   // try {
   //   await Order.insertMany([orderData]);
@@ -148,7 +139,7 @@ app.post("/create-checkout-session", async (req, res) => {
   //   return;
   // }
 
-  const { products } = req.body;
+  // const { products } = req.body;
 
   const lineItems = products.map((prod) => ({
     price_data: {
@@ -167,6 +158,9 @@ app.post("/create-checkout-session", async (req, res) => {
     mode: "payment",
     shipping_address_collection: {
       allowed_countries: ["IN"],
+    },
+    metadata: {
+      data: JSON.stringify(orderData),
     },
     success_url: `${process.env.DOMAIN_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${process.env.DOMAIN_URL}/cancel`,
