@@ -9,6 +9,42 @@ const stripe = require("stripe")(process.env.STRIPE_KEY);
 
 const app = express();
 
+// Stripe Webhook
+const endpointSecret = process.env.STRIPE_WEBHOOK_ENDPOINT_SECRET;
+
+app.post(
+  "/webhook",
+  express.raw({ type: "application/json" }),
+  (request, response) => {
+    const sig = request.headers["stripe-signature"];
+
+    let event;
+
+    try {
+      event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
+      console.log("Webhook Verified");
+    } catch (err) {
+      console.log(err);
+      response.status(400).send(`Webhook Error: ${err.message}`);
+      return;
+    }
+
+    // Handle the event
+    switch (event.type) {
+      case "payment_intent.succeeded":
+        const paymentIntent = event.data.object;
+        console.log("Payment Intent --> ", paymentIntent);
+        const metadata = paymentIntent.metadata;
+        console.log("Metadata --> ", metadata);
+        break;
+      default:
+        console.log(`Unhandled event type ${event.type}`);
+    }
+
+    response.sendStatus(200);
+  }
+);
+
 const PORT = process.env.PORT || 8000;
 
 app.use(express.json());
@@ -84,19 +120,19 @@ app.put("/productUpdate/:id", async (req, res) => {
 
 // Checkout api
 app.post("/create-checkout-session", async (req, res) => {
-  // const { products, addressData, userData } = req.body;
+  const { products, addressData, userData } = req.body;
 
-  // const productsData = products.map((prod) => ({
-  //   productDetails: prod._id,
-  //   quantity: prod.quantity,
-  //   totalPrice: prod.totalPrice,
-  // }));
+  const productsData = products.map((prod) => ({
+    productDetails: prod._id,
+    quantity: prod.quantity,
+    totalPrice: prod.totalPrice,
+  }));
 
-  // const orderData = {
-  //   addressData: addressData,
-  //   productsData: productsData,
-  //   userData: userData,
-  // };
+  const orderData = {
+    addressData: addressData,
+    productsData: productsData,
+    userData: userData,
+  };
 
   // try {
   //   await Order.insertMany([orderData]);
@@ -104,8 +140,6 @@ app.post("/create-checkout-session", async (req, res) => {
   //   res.json({ error: error });
   //   return;
   // }
-
-  const { products } = req.body;
 
   const lineItems = products.map((prod) => ({
     price_data: {
@@ -125,6 +159,7 @@ app.post("/create-checkout-session", async (req, res) => {
     shipping_address_collection: {
       allowed_countries: ["IN"],
     },
+    metadata: orderData,
     success_url: `${process.env.DOMAIN_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${process.env.DOMAIN_URL}/cancel`,
   });
