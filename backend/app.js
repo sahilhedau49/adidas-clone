@@ -122,7 +122,10 @@ app.post("/create-checkout-session", async (req, res) => {
     payment_method_types: ["card"],
     line_items: lineItems,
     mode: "payment",
-    success_url: `${process.env.DOMAIN_URL}/success`,
+    shipping_address_collection: {
+      allowed_countries: ["IN"],
+    },
+    success_url: `${process.env.DOMAIN_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${process.env.DOMAIN_URL}/cancel`,
   });
 
