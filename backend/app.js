@@ -31,9 +31,9 @@ app.post(
 
     // Handle the event
     switch (event.type) {
-      case "checkout.session.completed":
-        const session = event.data.object;
-        console.log("Session Details --> ", session);
+      case "payment_intent.succeeded":
+        const paymentIntent = event.data.object;
+        console.log("Payment Intent --> ", paymentIntent);
         break;
       default:
         console.log(`Unhandled event type ${event.type}`);
