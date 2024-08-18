@@ -15,7 +15,7 @@ const endpointSecret = process.env.STRIPE_WEBHOOK_ENDPOINT_SECRET;
 app.post(
   "/webhook",
   express.raw({ type: "application/json" }),
-  (request, response) => {
+  async (request, response) => {
     const sig = request.headers["stripe-signature"];
 
     let event;
@@ -33,6 +33,15 @@ app.post(
     switch (event.type) {
       case "payment_intent.succeeded":
         const paymentIntent = event.data.object;
+        const result = Promise.all([
+          stripe.checkout.sessions.retrieve(req.query.session_id, {
+            expand: ["payment_intent.payment_method"],
+          }),
+          stripe.checkout.sessions.listLineItems(req.query.session_id),
+        ]);
+
+        console.log(result);
+
         console.log("Payment Intent --> ", paymentIntent);
         break;
       default:
