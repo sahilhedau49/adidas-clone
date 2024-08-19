@@ -43,7 +43,7 @@ app.post(
 
         const orderData = {
           addressData: session.shipping_details.address,
-          productsData: JSON.parse(session.metadata.data),
+          productsData: JSON.parse(session.metadata.data).productsData,
           userData: userData,
         };
 
@@ -52,6 +52,7 @@ app.post(
         try {
           await Order.insertMany([orderData]);
         } catch (error) {
+          console.log("Error: ", error);
           res.json({ error: error });
           return;
         }
