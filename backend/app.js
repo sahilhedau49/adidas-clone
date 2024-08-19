@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const connectDB = require("./db/connect");
 const Product = require("./model/product");
+const Order = require("./model/orders");
 const cors = require("cors");
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 
