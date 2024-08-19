@@ -14,29 +14,21 @@ const ordersSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-    photoUrl: {
-      type: String,
+    phone_number: {
+      type: Number,
       required: true,
     },
   },
   addressData: {
-    name: {
+    line1: {
       type: String,
       required: true,
     },
-    phone: {
-      type: Number,
-      required: true,
-    },
-    housenumber: {
-      type: Number,
-      required: true,
-    },
-    address: {
+    line2: {
       type: String,
       required: true,
     },
-    pincode: {
+    postal_code: {
       type: String,
       required: true,
     },
@@ -45,6 +37,10 @@ const ordersSchema = new mongoose.Schema({
       required: true,
     },
     state: {
+      type: String,
+      required: true,
+    },
+    country: {
       type: String,
       required: true,
     },

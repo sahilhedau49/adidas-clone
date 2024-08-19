@@ -34,6 +34,26 @@ app.post(
       case "checkout.session.completed":
         const session = event.data.object;
         console.log("Session:", session);
+
+        const userData = {
+          name: session.customer_details.name,
+          email: session.customer_details.email,
+          phone_number: session.customer_details.phone,
+        };
+
+        const orderData = {
+          addressData: session.shipping_details.address,
+          productsData: JSON.parse(session.metadata.data),
+          userData: userData,
+        };
+
+        try {
+          await Order.insertMany([orderData]);
+        } catch (error) {
+          res.json({ error: error });
+          return;
+        }
+
         break;
       default:
         console.log(`Unhandled event type ${event.type}`);
@@ -192,6 +212,9 @@ app.post("/create-checkout-session", async (req, res) => {
     },
     metadata: {
       data: JSON.stringify(orderData),
+    },
+    phone_number_collection: {
+      enabled: true,
     },
     success_url: `${process.env.DOMAIN_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${process.env.DOMAIN_URL}/cancel`,

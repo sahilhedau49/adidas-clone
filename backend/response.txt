@@ -1,0 +1,95 @@
+Session: {
+  id: 'cs_test_b12XFqiVUpI8Ec8UE03jdwD1H5KRTKDQ9vVdcbe736b6dDplX0BU6Jc1EA',
+  object: 'checkout.session',
+  after_expiration: null,
+  allow_promotion_codes: null,
+  amount_subtotal: 1099700,
+  amount_total: 1099700,
+  automatic_tax: { enabled: false, liability: null, status: null },
+  billing_address_collection: null,
+  cancel_url: 'https://adidas-clone-sahilhedau49.netlify.app/cancel',
+  client_reference_id: null,
+  client_secret: null,
+  consent: null,
+  consent_collection: null,
+  created: 1724055229,
+  currency: 'inr',
+  currency_conversion: null,
+  custom_fields: [],
+  custom_text: {
+    after_submit: null,
+    shipping_address: null,
+    submit: null,
+    terms_of_service_acceptance: null
+  },
+  customer: null,
+  customer_creation: 'if_required',
+  customer_details: {
+    address: {
+      city: 'Nagpur',
+      country: 'IN',
+      line1: '82, Vitthalwadi',
+      line2: 'Hudkeshwar Road',
+      postal_code: '440034',
+      state: 'MH'
+    },
+    email: 'hedausahil49@gmail.com',
+    name: 'Sahil Sandeep Hedau',
+    phone: null,
+    tax_exempt: 'none',
+    tax_ids: []
+  },
+  customer_email: null,
+  expires_at: 1724141629,
+  invoice: null,
+  invoice_creation: {
+    enabled: false,
+    invoice_data: {
+      account_tax_ids: null,
+      custom_fields: null,
+      description: null,
+      footer: null,
+      issuer: null,
+      metadata: {},
+      rendering_options: null
+    }
+  },
+  livemode: false,
+  locale: null,
+  metadata: {
+    data: '{"productsData":[{"productDetails":"659a6a71279a151d815c8635","quantity":1,"totalPrice":8999},{"productDetails":"659a6c3e279a151d815c864e","quantity":2,"totalPrice":1998}]}'
+  },
+  mode: 'payment',
+  payment_intent: 'pi_3PpQizSBwEURRPsm1KZxmr2g',
+  payment_link: null,
+  payment_method_collection: 'if_required',
+  payment_method_configuration_details: null,
+  payment_method_options: { card: { request_three_d_secure: 'automatic' } },
+  payment_method_types: [ 'card' ],
+  payment_status: 'paid',
+  phone_number_collection: { enabled: false },
+  recovered_from: null,
+  saved_payment_method_options: null,
+  setup_intent: null,
+  shipping_address_collection: { allowed_countries: [ 'IN' ] },
+  shipping_cost: null,
+  shipping_details: {
+    address: {
+      city: 'Nagpur',
+      country: 'IN',
+      line1: '82, Vitthalwadi',
+      line2: 'Hudkeshwar Road',
+      postal_code: '440034',
+      state: 'MH'
+    },
+    name: 'Sahil Sandeep Hedau'
+  },
+  shipping_options: [],
+  status: 'complete',
+  submit_type: null,
+  subscription: null,
+  success_url: 'https://adidas-clone-sahilhedau49.netlify.app/success?session_id={CHECKOUT_SESSION_ID}',
+  total_details: { amount_discount: 0, amount_shipping: 0, amount_tax: 0 },
+  ui_mode: 'hosted',
+  url: null
+}
