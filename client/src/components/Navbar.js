@@ -34,6 +34,15 @@ const Navbar = () => {
         >
           Cart
         </Link>
+        {isAuthenticated && (
+          <Link
+            className="text-lg md:text-xl font-semibold md:font-medium duration-300 text-zinc-500 md:text-black hover:text-black"
+            to={`/myorders`}
+            onClick={() => setOpenMenu(false)}
+          >
+            My Orders
+          </Link>
+        )}
         {!isAuthenticated && (
           <Link
             className="text-lg md:text-xl font-semibold md:font-medium duration-300 text-zinc-500 md:text-black hover:text-black"

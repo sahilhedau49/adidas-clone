@@ -20,6 +20,8 @@ import Dashboard from "./components/Dashboard";
 import ProtectedDashboard from "./components/ProtectedDashboard";
 import UploadProduct from "./components/UploadProduct";
 import EditProduct from "./components/EditProduct";
+import Myorders from "./components/Myorders";
+import Orders from "./components/Orders";
 
 // Build folder file --> _redirects = /* /index.html 200
 
@@ -50,8 +52,15 @@ function App() {
               element={<Store category="fanstore" />}
             />
             <Route path="/product/:id" element={<Product />} />
-            {/* Will be protected route by user login or not */}
             <Route path="/cart" element={<Cart />} />
+            <Route
+              path="/myorders"
+              element={
+                <ProtectCheckout>
+                  <Myorders />
+                </ProtectCheckout>
+              }
+            />
             <Route
               path="/adminlogin"
               element={
@@ -68,7 +77,22 @@ function App() {
                 </ProtectedDashboard>
               }
             />
-            <Route path="/dashboard/upload" element={<UploadProduct />} />
+            <Route
+              path="/dashboard/upload"
+              element={
+                <ProtectedDashboard>
+                  <UploadProduct />
+                </ProtectedDashboard>
+              }
+            />
+            <Route
+              path="/dashboard/orders"
+              element={
+                <ProtectedDashboard>
+                  <Orders />
+                </ProtectedDashboard>
+              }
+            />
             <Route
               path="/dashboard/editProduct/:id"
               element={<EditProduct />}

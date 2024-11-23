@@ -173,7 +173,7 @@ app.put("/productUpdate/:id", async (req, res) => {
 
 // Checkout api
 app.post("/create-checkout-session", async (req, res) => {
-  const { products, addressData, userData } = req.body;
+  const { products } = req.body;
 
   const productsData = products.map((prod) => ({
     productDetails: prod._id,
@@ -182,19 +182,8 @@ app.post("/create-checkout-session", async (req, res) => {
   }));
 
   const orderData = {
-    // addressData: addressData,
     productsData: productsData,
-    // userData: userData,
   };
-
-  // try {
-  //   await Order.insertMany([orderData]);
-  // } catch (error) {
-  //   res.json({ error: error });
-  //   return;
-  // }
-
-  // const { products } = req.body;
 
   const lineItems = products.map((prod) => ({
     price_data: {
@@ -225,6 +214,57 @@ app.post("/create-checkout-session", async (req, res) => {
   });
 
   res.json({ id: session.id });
+});
+
+// Get all order
+app.get("/allOrders", async (req, res) => {
+  try {
+    const orders = await Order.find();
+    if (orders.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "There are no orders till now!!!" });
+    }
+    res.json(orders);
+  } catch (error) {
+    res.status(500).json({ error: "An error occurred while fetching orders" });
+  }
+});
+
+// Get order by username
+app.get("/orders", async (req, res) => {
+  const email = req.query.username + "@gmail.com";
+
+  if (!req.query.username) {
+    return res.status(400).json({ error: "Email query parameter is required" });
+  }
+
+  try {
+    const orders = await Order.find({ "userData.email": email });
+    if (orders.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "You have not ordered anything yet!!!" });
+    }
+    res.json(orders);
+  } catch (error) {
+    res.status(500).json({ error: "An error occurred while fetching orders" });
+  }
+});
+
+app.get("/getProductByID", async (req, res) => {
+  const id = req.query.id;
+
+  try {
+    const productData = await Product.find({ _id: id });
+    const result = {
+      name: productData[0].name,
+      imgUrl: productData[0].imgUrl,
+    };
+    res.json(result);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
 
 app.listen(PORT, async () => {
