@@ -102,7 +102,13 @@ const PORT = process.env.PORT || 8000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+const corsOptions = {
+  origin: "https://adidas-clone-sahilhedau49.netlify.app",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+app.use(cors(corsOptions));
 
 app.get("/", (res, req) => {
   req.json({
